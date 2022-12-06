@@ -272,10 +272,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 864355591}
   - {fileID: 1406648188}
   - {fileID: 1867382198}
   - {fileID: 1888599333}
-  - {fileID: 864355591}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 864355593}
   - component: {fileID: 864355592}
   - component: {fileID: 864355595}
+  - component: {fileID: 864355596}
   m_Layer: 0
   m_Name: Shaker
   m_TagString: Shaker
@@ -307,12 +308,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864355590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: -240, z: 10}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &864355592
 MonoBehaviour:
@@ -423,6 +424,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82005eb4b6972a4bab6ca81215ac7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inShaker: 0
+  startPour: 0
+  pourPos: {x: 1060, y: 450, z: 1}
+--- !u!50 &864355596
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864355590}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &902027085
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +584,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1867382199
 MonoBehaviour:
@@ -615,7 +640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1888599334
 SpriteRenderer:
@@ -682,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6012418287037055785, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6012418287037055785, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -727,6 +752,10 @@ PrefabInstance:
     - target: {fileID: 6012418287037055790, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
       propertyPath: m_Name
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928186278644790028, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}

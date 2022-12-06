@@ -10,18 +10,22 @@ public class ItemOPC : MonoBehaviour
 
     public Vector3 staticPos; //物体原本位置（如果松开鼠标会传回去的位置
     public Boolean isDrag = false;
-    public Boolean inShaker = false;
     public Boolean startPour = false;
 
     #region 鼠标操作事件
-    private void OnMouseDown() {
+    private void OnMouseDown()
+    {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        offset = screenPos - Input.mousePosition; 
-        isDrag = true;   
+        offset = screenPos - Input.mousePosition;
+        transform.eulerAngles = Vector3.zero;
+        isDrag = true;
+        startPour = false;
+        Shaker.Instance.startPour = false;
     }
 
-    private void OnMouseDrag() {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset);    
+    private void OnMouseDrag()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset);
     }
 
     private void OnMouseEnter()
@@ -36,7 +40,17 @@ public class ItemOPC : MonoBehaviour
 
     private void OnMouseUp()
     {
-        transform.position = staticPos;
+        if (Shaker.Instance.inShaker)
+        {
+            startPour = true;
+            Shaker.Instance.startPour = true;
+            transform.position = Shaker.Instance.pourPos;
+            transform.eulerAngles = new Vector3(0, 0, 120);
+        }
+        else
+        {
+            transform.position = staticPos;
+        }
         isDrag = false;
     }
     #endregion
@@ -49,7 +63,7 @@ public class ItemOPC : MonoBehaviour
 
     void Update()
     {
-        if (!isDrag)
+        if ((!isDrag)&&(!startPour))
         {
             staticPos = transform.position;
         }
