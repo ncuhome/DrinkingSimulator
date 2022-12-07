@@ -5,32 +5,34 @@ using UnityEngine;
 
 public class ItemOPC : MonoBehaviour
 {
-    private Vector3 screenPos; //��Ļ����
-    private Vector3 offset; //�����������������
+    private Vector3 screenPos; //屏幕坐标
+    private Vector3 offset; //鼠标和物体中心坐标差
 
-    public Vector3 staticPos; //����ԭ��λ�ã�����ɿ����ᴫ��ȥ��λ��
-    public Boolean isDrag = false;
-    public Boolean startPour = false;
-    public float pourTime = 0f;
+    /// <summary>
+    /// 物体固定位置（如果松开鼠标会传回去的位置
+    /// </summary>
+    public Vector3 staticPos;
+    private Boolean isDrag = false; //是否处于抓取状态
+    private Boolean startPour = false; // 是否开始倒酒状态
+    private float targetEuler_z = 0f; // 旋转目标角
+    private float curEuler_z = 0f; // 当前角度
+    /// <summary>
+    /// 物体旋转速度 度/s
+    /// </summary>
+    public float spinSpeed = 360f;
 
-    #region �������¼�
+    #region 鼠标操作事件
     private void OnMouseDown()
     {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
         offset = screenPos - Input.mousePosition;
         isDrag = true;
-
-        if ((startPour) && (pourTime > 2f))
-        {
-            EndPour();
-        }
-
     }
 
     private void OnMouseDrag()
     {
         if (startPour) return;
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset);
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // 跟随鼠标移动
     }
 
     private void OnMouseEnter()
@@ -45,9 +47,9 @@ public class ItemOPC : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Shaker.Instance.inShaker)
+        if (Shaker.Instance.inShaker) // 如果移动到调酒杯上就倒酒，否则移回原位
         {
-            if ((!startPour) && (Shaker.Instance.pourTime <= 10f))
+            if ((!startPour))
             {
                 StartPour();
             }
@@ -59,22 +61,37 @@ public class ItemOPC : MonoBehaviour
         isDrag = false;
     }
     #endregion
-
+    /// <summary>
+    /// 开始倒酒
+    /// </summary>
     private void StartPour()
     {
         startPour = true;
-        pourTime = 0f;
-        Shaker.Instance.wine = this.GetComponent<Item>();
+        Shaker.Instance.wineOPC = this;
         transform.position = Shaker.Instance.pourPos;
-        transform.eulerAngles = new Vector3(0, 0, 120);
-        Shaker.Instance.StartPour();
+        targetEuler_z = 120f;
+        StartCoroutine("StartShakerPour");
     }
 
-    private void EndPour()
+    private IEnumerator StartShakerPour()
     {
+        yield return new WaitForSeconds(0.4f);
+        Shaker.Instance.StartPour();
+    }
+    /// <summary>
+    /// 将酒瓶回转
+    /// </summary>
+    public void EndPourSpin()
+    {
+        targetEuler_z = 0f;
+        StartCoroutine("EndPour");
+    }
+
+    public IEnumerator EndPour()
+    {
+        yield return new WaitForSeconds(0.4f);
+        transform.position = staticPos;
         startPour = false;
-        transform.eulerAngles = Vector3.zero;
-        Shaker.Instance.EndPour();
     }
 
     #region Unity
@@ -85,13 +102,35 @@ public class ItemOPC : MonoBehaviour
 
     void Update()
     {
-        if ((!isDrag) && (!Shaker.Instance.startPour))
+        // 设置固定位置
+        if ((!isDrag) && (!startPour))
         {
             staticPos = transform.position;
         }
-        if (startPour)
+
+        // 旋转物体
+        transform.eulerAngles = new Vector3(0f, 0f, curEuler_z);
+        if (targetEuler_z != 0)
         {
-            pourTime += Time.deltaTime;
+            if (curEuler_z < targetEuler_z)
+            {
+                curEuler_z += Time.deltaTime * spinSpeed;
+            }
+            else
+            {
+                curEuler_z = targetEuler_z;
+            }
+        }
+        else
+        {
+            if (curEuler_z > targetEuler_z)
+            {
+                curEuler_z -= Time.deltaTime * spinSpeed;
+            }
+            else
+            {
+                curEuler_z = targetEuler_z;
+            }
         }
     }
     #endregion

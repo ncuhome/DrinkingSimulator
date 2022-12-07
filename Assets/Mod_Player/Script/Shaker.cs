@@ -6,25 +6,12 @@ using UnityEngine;
 public class Shaker : MonoBehaviour
 {
     public static Shaker Instance { get; private set; }
-    public Transform wineSlider = null;
-    private float wineScale_y = 0f;
-    private float winePosition_y = -3f;
     public Boolean inShaker = false;
     public Boolean startPour = false;
     public Vector3 pourPos;
-    public Item wine;
-    /// <summary>
-    /// 生命影响值
-    /// </summary>
-    public float HealthEffect;
-    /// <summary>
-    /// 压力影响值
-    /// </summary>
-    public float PressureEffect;
-    /// <summary>
-    /// 醉酒影响值
-    /// </summary>
-    public float DrunkEffect;
+    public ItemOPC wineOPC = null;
+    public Transform maskTransform = null;
+    public float maskPos_y = 0f;
 
     public float pourTime = 0f;
 
@@ -46,17 +33,11 @@ public class Shaker : MonoBehaviour
         if (startPour)
         {
             pourTime += Time.deltaTime;
-            HealthEffect += Time.deltaTime * wine.HealthEffect;
-            PressureEffect += Time.deltaTime * wine.PressureEffect;
-            DrunkEffect += Time.deltaTime * wine.DrunkEffect;
-
-            wineScale_y += Time.deltaTime * 6f / 10f;
-            winePosition_y += Time.deltaTime * 3f / 10f;
-            wineSlider.localScale.Set(4.2f, wineScale_y, 1f);
-            wineSlider.localPosition.Set(0f, winePosition_y, 0f);
+            maskPos_y -= Time.deltaTime * 200f;
+            maskTransform.localPosition = new Vector3(30f, maskPos_y, 10f);
         }
 
-        if (pourTime >= 10f)
+        if (pourTime >= 1f)
         {
             EndPour();
         }
@@ -65,19 +46,20 @@ public class Shaker : MonoBehaviour
     public void StartPour()
     {
         startPour = true;
+        maskPos_y = -100f;
     }
 
     public void EndPour()
     {
+        pourTime = 0f;
+        maskTransform.localPosition = new Vector3(30f, -100f, 10f);
         startPour = false;
+        wineOPC.EndPourSpin();
     }
 
     public void Drink()
     {
-        HealthEffect /= pourTime;
-        PressureEffect /= pourTime;
-        DrunkEffect /= pourTime;
-        pourTime = 0f;
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
