@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SetCustomer : MonoBehaviour
 {
-    private int maxc = 2;//顾客数量
+    private int maxc = 1;//顾客数量
 
     public Customer[] customerlist;
     
@@ -26,17 +27,14 @@ public class SetCustomer : MonoBehaviour
         for(int i = 0; i < maxc; i++)
         {
             cus = customerlist[i];
-            if(cus.GetComponent<Customer>().order.Length == 0)
-            {
-                //顾客离开
-            }
+
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        customerlist = new Customer[maxc - 1];
+        customerlist = new Customer[maxc];
 
         for (int i = 0; i < maxc; i++)
         {
