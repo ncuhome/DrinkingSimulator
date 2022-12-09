@@ -10,10 +10,6 @@ public class Item : MonoBehaviour
     /// </summary>
     public string Name;
     /// <summary>
-    /// 物品ID
-    /// </summary>
-    public int ID;
-    /// <summary>
     /// 物品描述
     /// </summary>
     public string Description;
@@ -45,11 +41,14 @@ public class Item : MonoBehaviour
     /// 猎奇程度
     /// </summary>
     public int Abnormal;
+    /// <summary>
+    /// 是否处于控制权
+    /// </summary>
+    public bool control;
 
     public void SetData(ItemTemplate template)
     {
         Name = template.Name;
-        ID = template.ID;
         Description = template.Description;
         FileName = template.FileName;
         Sweet = template.Sweet;
@@ -66,10 +65,6 @@ public class ItemTemplate
     /// 物品名称
     /// </summary>
     public string Name;
-    /// <summary>
-    /// 物品ID
-    /// </summary>
-    public int ID;
     /// <summary>
     /// 物品描述
     /// </summary>

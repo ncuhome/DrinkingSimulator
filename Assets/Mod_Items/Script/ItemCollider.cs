@@ -16,27 +16,29 @@ public class ItemCollider : MonoBehaviour
     #region ??????
     private void OnMouseDown()
     {
-        
+        item.control = true;
     }
 
     private void OnMouseDrag()
     {
-        
+        item.control = true;
     }
 
     private void OnMouseEnter()
     {
+        item.control = true;
         DescriptionPanel.Display(item.Name, item.Description);
     }
 
     private void OnMouseExit()
     {
+        item.control = false;
         DescriptionPanel.Disappear();
     }
 
     private void OnMouseUp()
     {
-        
+        item.control = false;
     }
     #endregion
 
