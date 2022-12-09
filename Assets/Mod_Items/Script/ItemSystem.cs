@@ -16,7 +16,7 @@ public class ItemSystem : MonoBehaviour
     /// </summary>
     public GameObject ItemSpotPrefb;
     #endregion
-
+     
     #region 关联物体
     /// <summary>
     /// 名称文本
