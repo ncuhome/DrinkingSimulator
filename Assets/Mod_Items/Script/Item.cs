@@ -3,31 +3,31 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     /// <summary>
-    /// ÎïÆ·Ãû³Æ
+    /// ç‰©å“åç§°
     /// </summary>
     public string Name;
     /// <summary>
-    /// ÎïÆ·ID
+    /// ç‰©å“ID
     /// </summary>
     public int ID;
     /// <summary>
-    /// ÎïÆ·ÃèÊö
+    /// ç‰©å“æè¿°
     /// </summary>
-    public string Decription;
+    public string Description;
     /// <summary>
-    /// ÌùÍ¼Ãû³Æ
+    /// è´´å›¾åç§°
     /// </summary>
     public string FileName;
     /// <summary>
-    /// ÉúÃüÓ°ÏìÖµ
+    /// ç”Ÿå‘½å½±å“å€¼
     /// </summary>
     public float HealthEffect;
     /// <summary>
-    /// Ñ¹Á¦Ó°ÏìÖµ
+    /// å‹åŠ›å½±å“å€¼
     /// </summary>
     public float PressureEffect;
     /// <summary>
-    /// ×í¾ÆÓ°ÏìÖµ
+    /// é†‰é…’å½±å“å€¼
     /// </summary>
     public float DrunkEffect;
 }
