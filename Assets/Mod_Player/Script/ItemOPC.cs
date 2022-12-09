@@ -12,6 +12,7 @@ public class ItemOPC : MonoBehaviour
     /// 物体固定位置（如果松开鼠标会传回去的位置
     /// </summary>
     public Vector3 staticPos;
+    public Material liquidMaterial;
     private Boolean isDrag = false; //是否处于抓取状态
     private Boolean startPour = false; // 是否开始倒酒状态
     private float targetEuler_z = 0f; // 旋转目标角
@@ -69,12 +70,15 @@ public class ItemOPC : MonoBehaviour
         startPour = true;
         Shaker.Instance.wineOPC = this;
         transform.position = Shaker.Instance.pourPos;
+        Shaker.Instance.meshRenderer.material = liquidMaterial;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
     }
 
     private IEnumerator StartShakerPour()
     {
+        Shaker.Instance.meshRenderer.material = liquidMaterial;
+        Shaker.Instance.InstantiateLiquid();
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
     }

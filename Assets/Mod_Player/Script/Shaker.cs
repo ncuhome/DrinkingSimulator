@@ -9,9 +9,11 @@ public class Shaker : MonoBehaviour
     public Boolean inShaker = false;
     public Boolean startPour = false;
     public Vector3 pourPos;
+    public Vector3 liquidPos;
+    public GameObject LiquidPre = null;
+    public Transform liquidParent = null;
     public ItemOPC wineOPC = null;
-    public Transform maskTransform = null;
-    public float maskPos_y = 0f;
+    public MeshRenderer meshRenderer;
 
     public float pourTime = 0f;
 
@@ -33,26 +35,34 @@ public class Shaker : MonoBehaviour
         if (startPour)
         {
             pourTime += Time.deltaTime;
-            maskPos_y -= Time.deltaTime * 200f;
-            maskTransform.localPosition = new Vector3(30f, maskPos_y, 10f);
         }
 
-        if (pourTime >= 1f)
+        if (pourTime >= 3f)
         {
             EndPour();
+        }
+    }
+
+    public void InstantiateLiquid()
+    {
+        for (int i = 0; i < 40; i++)
+        {
+            var random = UnityEngine.Random.value;
+            var liquidPar = Instantiate(LiquidPre, liquidPos + new Vector3(random * 50, random * 40, 0), Quaternion.identity);
+            liquidPar.GetComponent<Rigidbody2D>().velocity = new Vector3(-random * 50, -random * 40, 0);
+            liquidPar.transform.SetParent(liquidParent);
+            Destroy(liquidPar, 6.0f);
         }
     }
 
     public void StartPour()
     {
         startPour = true;
-        maskPos_y = -100f;
     }
 
     public void EndPour()
     {
         pourTime = 0f;
-        maskTransform.localPosition = new Vector3(30f, -100f, 10f);
         startPour = false;
         wineOPC.EndPourSpin();
     }
