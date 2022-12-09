@@ -83,6 +83,7 @@ public class Customer : MonoBehaviour
         }
         else
         {
+            /*
             int sweet = al.GetComponent<Item>().Sweet;
             int acid = al.GetComponent<Item>().Acid;
             int alcohol = al.GetComponent<Item>().Alcohol;
@@ -142,7 +143,9 @@ public class Customer : MonoBehaviour
                 isevaluate = true;
                 Destroy(al);
             }
+            */
         }
+
 
     }
 
