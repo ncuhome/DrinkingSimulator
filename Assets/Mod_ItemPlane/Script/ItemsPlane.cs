@@ -193,8 +193,10 @@ public class ItemsPlane : MonoBehaviour
         obj.GetComponent<Item>().t = pt;
         GameObject ii = obj.transform.Find("ItemImage").gameObject;
 
-        ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[itemindex].FileName);
+        ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + Items[itemindex].FileName);
 
+        ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[itemindex].FileName);
+>>>>>>>>> Temporary merge branch 2
         Items.Add(obj);
     }
     /// <summary>
