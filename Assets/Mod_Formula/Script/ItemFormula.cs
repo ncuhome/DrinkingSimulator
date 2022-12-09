@@ -11,7 +11,7 @@ public class ItemFormula : MonoBehaviour
     /// <summary>
     /// 配方文件路径
     /// </summary>
-    public static string path;
+    public string path;
     /// <summary>
     /// 配方表
     /// </summary>
@@ -24,17 +24,17 @@ public class ItemFormula : MonoBehaviour
     /// <param name="materials">添加的全部配方</param>
     /// <param name="backM">返回的</param>
     /// <returns></returns>
-    public static string Make(string[] materials,out string[] backM)
+    public static string Make(string[] materials)
     {
         foreach(Formula formula in formulas) 
         {
             if(formula.isMake(materials))
             {
-                backM = formula.getMaterials(materials);
+                string[] backM = formula.getMaterials(materials);
+                if (backM.Length > 0) { return "不可名状物"; }
                 return formula.Name;
             }
         }
-        backM = materials;
         return "不可名状物";
     }
 
@@ -169,6 +169,4 @@ class FormulaT
     /// 材料7名称
     /// </summary>
     public string material7;
-
-  
 }

@@ -26,10 +26,6 @@ public class Item : MonoBehaviour
     /// </summary>
     public float t;
     /// <summary>
-    /// 标签栏
-    /// </summary>
-    public Tag[] tags = new Tag[3];
-    /// <summary>
     /// 甜度
     /// </summary>
     public int Sweet;
@@ -56,9 +52,6 @@ public class Item : MonoBehaviour
         ID = template.ID;
         Description = template.Description;
         FileName = template.FileName;
-        tags[0] = template.Tag1;
-        tags[1] = template.Tag2;
-        tags[2] = template.Tag3;
         Sweet = template.Sweet;
         Acid = template.Acid;
         Alcohol = template.Alcohol;
@@ -85,19 +78,6 @@ public class ItemTemplate
     /// 贴图名称
     /// </summary>
     public string FileName;
-
-    /// <summary>
-    /// 标签1
-    /// </summary>
-    public Tag Tag1;
-    /// <summary>
-    /// 标签2
-    /// </summary>
-    public Tag Tag2;
-    /// <summary>
-    /// 标签3
-    /// </summary>
-    public Tag Tag3;
 
     /// <summary>
     /// 甜度
