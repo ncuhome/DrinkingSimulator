@@ -128,11 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u6717\u59C6\u9152(\u6D4B\u8BD5)"
   ID: 0
-  Decription: "\u5428\u5428\u5428"
+  Description: 
   FileName: RUM_test
-  HealthEffect: -10
-  PressureEffect: -10
-  DrunkEffect: 15
+  t: 0
+  tags: 000000000000000000000000
 --- !u!114 &6242174402385499776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af36532f27345854e9b94ae8b3f8590d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DescriptionPanel: {fileID: 0}
+  item: {fileID: 8040731572831774654}
 --- !u!114 &3757683476704014875
 MonoBehaviour:
   m_ObjectHideFlags: 0

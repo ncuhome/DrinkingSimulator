@@ -1,33 +1,66 @@
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
+public enum Tag {Normal }
 public class Item : MonoBehaviour
 {
     /// <summary>
-    /// ÎïÆ·Ãû³Æ
+    /// ç‰©å“åç§°
     /// </summary>
     public string Name;
     /// <summary>
-    /// ÎïÆ·ID
+    /// ç‰©å“ID
     /// </summary>
     public int ID;
     /// <summary>
-    /// ÎïÆ·ÃèÊö
+    /// ç‰©å“æè¿°
     /// </summary>
-    public string Decription;
+    public string Description;
     /// <summary>
-    /// ÌùÍ¼Ãû³Æ
+    /// è´´å›¾åç§°
     /// </summary>
     public string FileName;
     /// <summary>
-    /// ÉúÃüÓ°ÏìÖµ
+    /// æ—‹è½¬å‚æ•°
     /// </summary>
-    public float HealthEffect;
+    public float t;
     /// <summary>
-    /// Ñ¹Á¦Ó°ÏìÖµ
+    /// æ ‡ç­¾æ 
     /// </summary>
-    public float PressureEffect;
+    public Tag[] tags = new Tag[3];
+
+    public void SetData(ItemTemplate template)
+    {
+        Name = template.Name;
+        ID = template.ID;
+        Description = template.Description;
+        FileName = template.FileName;
+        tags = template.tags;
+    }
+}
+
+public class ItemTemplate
+{
     /// <summary>
-    /// ×í¾ÆÓ°ÏìÖµ
+    /// ç‰©å“åç§°
     /// </summary>
-    public float DrunkEffect;
+    public string Name;
+    /// <summary>
+    /// ç‰©å“ID
+    /// </summary>
+    public int ID;
+    /// <summary>
+    /// ç‰©å“æè¿°
+    /// </summary>
+    public string Description;
+    /// <summary>
+    /// è´´å›¾åç§°
+    /// </summary>
+    public string FileName;
+
+    /// <summary>
+    /// æ ‡ç­¾æ 
+    /// </summary>
+    public Tag[] tags = new Tag[3];
 }
