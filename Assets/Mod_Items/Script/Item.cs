@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum Tag {Normal }
+public enum Tag { Normal }
 public class Item : MonoBehaviour
 {
     /// <summary>
@@ -29,6 +29,26 @@ public class Item : MonoBehaviour
     /// 标签栏
     /// </summary>
     public Tag[] tags = new Tag[3];
+    /// <summary>
+    /// 甜度
+    /// </summary>
+    public int Sweet;
+    /// <summary>
+    /// 酸度
+    /// </summary>
+    public int Acid;
+    /// <summary>
+    /// 酒精含量
+    /// </summary>
+    public int Alcohol;
+    /// <summary>
+    /// 温度
+    /// </summary>
+    public int Temperature;
+    /// <summary>
+    /// 猎奇程度
+    /// </summary>
+    public int Abnormal;
 
     public void SetData(ItemTemplate template)
     {
@@ -36,7 +56,14 @@ public class Item : MonoBehaviour
         ID = template.ID;
         Description = template.Description;
         FileName = template.FileName;
-        tags = template.tags;
+        tags[0] = template.Tag1;
+        tags[1] = template.Tag2;
+        tags[2] = template.Tag3;
+        Sweet = template.Sweet;
+        Acid = template.Acid;
+        Alcohol = template.Alcohol;
+        Temperature = template.Temperature;
+        Abnormal = template.Abnormal;
     }
 }
 
@@ -60,7 +87,36 @@ public class ItemTemplate
     public string FileName;
 
     /// <summary>
-    /// 标签栏
+    /// 标签1
     /// </summary>
-    public Tag[] tags = new Tag[3];
+    public Tag Tag1;
+    /// <summary>
+    /// 标签2
+    /// </summary>
+    public Tag Tag2;
+    /// <summary>
+    /// 标签3
+    /// </summary>
+    public Tag Tag3;
+
+    /// <summary>
+    /// 甜度
+    /// </summary>
+    public int Sweet;
+    /// <summary>
+    /// 酸度
+    /// </summary>
+    public int Acid;
+    /// <summary>
+    /// 酒精含量
+    /// </summary>
+    public int Alcohol;
+    /// <summary>
+    /// 温度
+    /// </summary>
+    public int Temperature;
+    /// <summary>
+    /// 猎奇程度
+    /// </summary>
+    public int Abnormal;
 }
