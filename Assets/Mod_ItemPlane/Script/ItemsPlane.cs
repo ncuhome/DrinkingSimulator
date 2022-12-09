@@ -192,7 +192,9 @@ public class ItemsPlane : MonoBehaviour
         obj.GetComponent<Item>().SetData(itemsys.Items[pindex]);
         obj.GetComponent<Item>().t = pt;
         GameObject ii = obj.transform.Find("ItemImage").gameObject;
+
         ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[itemindex].FileName);
+
         Items.Add(obj);
     }
     /// <summary>
