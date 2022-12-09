@@ -19,7 +19,7 @@ public class SetCustomer : MonoBehaviour
         cus = Instantiate(Resources.Load("Prefb/Customer" + n.ToString())) as GameObject;
         return cus.AddComponent<Customer>();
     }
-
+    /*
     public void DelCustomer()
     {
         Customer cus;
@@ -29,6 +29,7 @@ public class SetCustomer : MonoBehaviour
             //leave
         }
     }
+    */
 
     // Start is called before the first frame update
     void Start()
