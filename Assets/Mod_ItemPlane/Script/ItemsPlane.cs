@@ -61,10 +61,6 @@ public class ItemsPlane : MonoBehaviour
     /// </summary>
     public float speedMax;
     #endregion
-    /// <summary>
-    /// 是否在左边
-    /// </summary>
-    public bool inLeft;
 
     /// <summary>
     /// 物体描述浮窗
@@ -108,17 +104,17 @@ public class ItemsPlane : MonoBehaviour
             GameObject item = Items[i];
             float pt = item.GetComponent<Item>().t;
             pt += speedT * Time.deltaTime;
-            while (pt > 360)
+            while(pt >360)
             {
                 pt -= 360;
             }
-            while (pt < -360)
+            while(pt < -360)
             {
                 pt += 360;
             }
             double nt = Math.PI * pt / 180;
-            item.transform.position = new Vector3(-300 + 500 * (float)Math.Cos(nt), 280 + 200 * (float)Math.Sin(nt), (float)nt - 100);
-            item.transform.localScale = new Vector2(21.74f * (0.75f - (float)nt / 10), 23.04f * (0.75f - (float)nt / 10));
+            item.transform.position = new Vector3(-300 + 500 * (float)Math.Cos(nt), 280 + 200 * (float)Math.Sin(nt),(float)nt-100);
+            item.transform.localScale = new Vector2(21.74f * (0.75f-(float)nt/10), 23.04f * (0.75f - (float)nt/10));
             item.GetComponent<Item>().t = pt;
         }
 
@@ -144,7 +140,7 @@ public class ItemsPlane : MonoBehaviour
                 creat = 2;
             }
         }
-        if (creat == 1)
+        if(creat == 1)
         {
             index++;
             while (index >= itemsys.Items.Count)
@@ -152,9 +148,9 @@ public class ItemsPlane : MonoBehaviour
                 index -= itemsys.Items.Count;
             }
             CreatItem(90, index + 2);
-
+           
         }
-        else if (creat == 2)
+        else if(creat == 2) 
         {
             index--;
             while (index < 0)
@@ -209,13 +205,6 @@ public class ItemsPlane : MonoBehaviour
         int t2 = 0;
         int t3 = 45;
         int t4 = -90;
-        if (inLeft)
-        {
-            t1 += 180;
-            t2 += 180;
-            t3 += 180;
-            t4 += 180;
-        }
         //int t5 = 90;
         /*************/
 
@@ -223,7 +212,7 @@ public class ItemsPlane : MonoBehaviour
         CreatItem(t2, 0);
         CreatItem(t3, 1);
         CreatItem(t4, 2);
-        // CreatItem(t5, itemsys.Items.Count - 2);
+       // CreatItem(t5, itemsys.Items.Count - 2);
     }
     #endregion
 
@@ -251,7 +240,7 @@ public class ItemsPlane : MonoBehaviour
             timer = 0;
             Vector2 move = (Vector2)Input.mousePosition - mouse_old;
             float speedAd = move.magnitude * multSpeed;
-
+           
             //Debug.Log($"OLD:{mouse_old.y}  NEW:{Input.mousePosition.y}");
             if (Input.mousePosition.y < mouse_old.y)
             {
@@ -311,16 +300,16 @@ public class ItemsPlane : MonoBehaviour
             }
         }
 
-        if (aimIndex > -1)
+        if(aimIndex > -1)
         {
-            if (aimIndex == index)
+            if(aimIndex == index)
             {
                 speedT = 0;
                 aimIndex = -1;
             }
-            else if (aimIndex == index - 1)
+            else if(aimIndex == index -1 )
             {
-                speedT = speedMax / 10;
+                speedT = speedMax/10;
             }
             else
             {
