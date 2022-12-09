@@ -52,6 +52,10 @@ public class ItemSystem : MonoBehaviour
     /// </summary>
     public List<GameObject> Posts = new List<GameObject>();
     /// <summary>
+    /// 引用物品表文件名称(在dataSheet下
+    /// </summary>
+    public string dataPath;
+    /// <summary>
     /// 当前光标索引
     /// </summary>
     public int index;
@@ -127,7 +131,7 @@ public class ItemSystem : MonoBehaviour
     #region Unity
     private void Awake()
     {
-        string path = Application.dataPath + @"/Mod_Items/DataSheet/Items.json";
+        string path = Application.dataPath + @"/Mod_Items/DataSheet/"+dataPath+".json";
         string txt = File.ReadAllText(path);
         //Debug.Log(txt);
         Items = JsonConvert.DeserializeObject<List<ItemTemplate>>(txt);
