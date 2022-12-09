@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7928186278644790028}
   - component: {fileID: 8040731572831774654}
   - component: {fileID: 6242174402385499776}
+  - component: {fileID: 5211264395773036018}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -208,7 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: "\u6717\u59C6\u9152(\u6D4B\u8BD5)"
-  ID: 0
   Description: 
   FileName: RUM_test
   t: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   Alcohol: 0
   Temperature: 0
   Abnormal: 0
+  control: 0
 --- !u!114 &6242174402385499776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +232,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DescriptionPanel: {fileID: 0}
   item: {fileID: 8040731572831774654}
+--- !u!114 &5211264395773036018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012418287037055790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7010f8f2398264f8ac5d45482e42e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   staticPos: {x: 0, y: 0, z: 0}
   liquidMaterial: {fileID: 2100000, guid: efeba3f269118b3419dec9c0836a0c9a, type: 2}
   spinSpeed: 360
+  item: {fileID: 8040731572831774654}

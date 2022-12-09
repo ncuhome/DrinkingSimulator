@@ -21,6 +21,7 @@ public class ItemOPC : MonoBehaviour
     /// ?????? ?/s
     /// </summary>
     public float spinSpeed = 360f;
+    public Item item;
 
     #region ??????
     private void OnMouseDown()
@@ -52,11 +53,13 @@ public class ItemOPC : MonoBehaviour
         {
             if ((!startPour))
             {
+                item.control = true;
                 StartPour();
             }
         }
         else
         {
+            item.control = false;
             transform.position = staticPos;
         }
         isDrag = false;
