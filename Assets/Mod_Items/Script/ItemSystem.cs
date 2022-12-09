@@ -115,7 +115,7 @@ public class ItemSystem : MonoBehaviour
 
             GameObject ii = rt.Find("ItemImage").gameObject;
             int select = i;
-            ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/RUM_test");
+            ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/"+ Items[i].FileName);
             ii.GetComponent<PostCollider>().enter = delegate () { Select(select); };
             ii.GetComponent<PostCollider>().pressed = delegate () { Checkout(select); };
 
