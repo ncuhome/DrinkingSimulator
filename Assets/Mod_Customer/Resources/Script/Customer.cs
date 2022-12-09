@@ -7,12 +7,12 @@ using UnityEngine.Rendering;
 
 public class Customer : MonoBehaviour
 {
-    private ArrayList x = new ArrayList() {0, 1, 2, 3, 4}; //(甜酸酒温猎)
+    public bool isevaluate;
     public int[] order;//点单表
     public int[] demand;
     public int type;//顾客类型(0:具体\1:宽泛)
 
-
+    private ArrayList x = new ArrayList() { 0, 1, 2, 3, 4 }; //(甜酸酒温猎)
     private int maxorder = 4;//最大点单数
     private int maxtype = 4;//最大可选择种类数
     private int maxal = 16;//最大可选择酒数
@@ -71,17 +71,77 @@ public class Customer : MonoBehaviour
             if(al.GetComponent<Item>().ID == (int)order[0])
             {
                 Debug.Log("Yes");
-
+                isevaluate = true;
                 Destroy(al);
             }
             else
             {
                 Debug.Log("No");
+                isevaluate = true;
+                Destroy(al);
             }
         }
         else
         {
+            int sweet = al.GetComponent<Item>().Sweet;
+            int acid = al.GetComponent<Item>().Acid;
+            int alcohol = al.GetComponent<Item>().Alcohol;
+            int temperature = al.GetComponent<Item>().Temperature;
+            int abnormal = al.GetComponent<Item>().Abnormal;
 
+            int s = 0;
+
+            for (int i = 0; i < order.Length; i++)
+            {
+                if(order[i] == 0)
+                {
+                    if((demand[i] >= sweet-10) || demand[i] <= sweet+10)
+                    {
+                        s += 1;
+                    }
+                }
+                else if (order[i] == 1)
+                {
+                    if ((demand[i] >= acid - 10) || demand[i] <= acid + 10)
+                    {
+                        s += 1;
+                    }
+                }
+                else if (order[i] == 1)
+                {
+                    if ((demand[i] >= alcohol - 10) || demand[i] <= alcohol + 10)
+                    {
+                        s += 1;
+                    }
+                }
+                else if (order[i] == 1)
+                {
+                    if ((demand[i] >= temperature - 10) || demand[i] <= temperature + 10)
+                    {
+                        s += 1;
+                    }
+                }
+                else if (order[i] == 1)
+                {
+                    if ((demand[i] >= abnormal - 10) || demand[i] <= abnormal + 10)
+                    {
+                        s += 1;
+                    }
+                }
+            }
+
+            if (s == order.Length)
+            {
+                Debug.Log("Yes");
+                isevaluate = true;
+                Destroy(al);
+            }
+            else
+            {
+                Debug.Log("No");
+                isevaluate = true;
+                Destroy(al);
+            }
         }
 
     }
@@ -89,6 +149,7 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isevaluate = false;
         order = InitOrder();
     }
 

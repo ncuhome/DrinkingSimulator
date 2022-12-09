@@ -7,7 +7,7 @@ public class SetCustomer : MonoBehaviour
 {
     private int maxc = 1;//顾客数量
 
-    public Customer[] customerlist;
+    public ArrayList customerlist = new ArrayList();
     
     /// <summary>
     /// 生成一个顾客
@@ -24,27 +24,27 @@ public class SetCustomer : MonoBehaviour
     {
         Customer cus;
 
-        for(int i = 0; i < maxc; i++)
+        if(cus.isevaluate == true)
         {
-            cus = customerlist[i];
-
+            //leave
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        customerlist = new Customer[maxc];
-
         for (int i = 0; i < maxc; i++)
         {
-            customerlist[i] = InitCutomer();
+            customerlist.Add(InitCutomer());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(customerlist.Count < maxc)
+        {
+            customerlist.Add(InitCutomer());
+        }
     }
 }
