@@ -105,6 +105,7 @@ public class ItemOPC : MonoBehaviour
             Item.GetComponent<BoxCollider2D>().enabled = true;
             Item.GetComponent<SpriteRenderer>().enabled = true;
         }
+        Shaker.Instance.inShaker = false;
         Destroy(this.gameObject);
     }
 

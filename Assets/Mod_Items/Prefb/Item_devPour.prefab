@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6242174402385499776}
   m_Layer: 0
   m_Name: Item_devPour
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   Temperature: 0
   Abnormal: 0
   control: 0
+  LiquidMaterial: 
 --- !u!114 &6242174402385499776
 MonoBehaviour:
   m_ObjectHideFlags: 0
