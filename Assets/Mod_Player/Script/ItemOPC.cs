@@ -54,7 +54,15 @@ public class ItemOPC : MonoBehaviour
         {
             if ((!Shaker.Instance.startPour))
             {
-                StartPour();
+                if (Shaker.Instance.CanAddWine())
+                {
+                    StartPour();
+                }
+                else
+                {
+                    //提示装满了
+                    Debug.Log("装满了");
+                }
             }
         }
         else
@@ -85,6 +93,7 @@ public class ItemOPC : MonoBehaviour
     {
         Shaker.Instance.meshRenderer.material = liquidMaterial;
         Shaker.Instance.InstantiateLiquid();
+        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
     }

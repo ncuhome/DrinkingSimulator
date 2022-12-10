@@ -25,9 +25,9 @@ public class ItemFormula : MonoBehaviour
     /// <returns></returns>
     public static string Make(string[] materials)
     {
-        foreach(Formula formula in formulas) 
+        foreach (Formula formula in formulas)
         {
-            if(formula.isMake(materials))
+            if (formula.isMake(materials))
             {
                 string[] backM = formula.getMaterials(materials);
                 if (backM.Length > 0) { return "不可名状物"; }
@@ -47,7 +47,7 @@ public class ItemFormula : MonoBehaviour
         string txt = File.ReadAllText(formulaFile);
         FormulaT[] formulasT = JsonConvert.DeserializeObject<FormulaT[]>(txt);
         formulas = new Formula[formulasT.Length];
-        for(int i=0;i<formulas.Length;i++)
+        for (int i = 0; i < formulas.Length; i++)
         {
             formulas[i] = new Formula(formulasT[i]);
         }
@@ -63,13 +63,13 @@ public class ItemFormula : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        
+
     }
     #endregion
 }
@@ -105,7 +105,7 @@ class Formula
         {
             bool mk = false;
             if (m == "Null") { continue; }
-            foreach(string n in materials)
+            foreach (string n in materials)
             {
                 if (n == m) { mk = true; }
             }
