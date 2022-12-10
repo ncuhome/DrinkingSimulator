@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7928186278644790028}
   - component: {fileID: 8040731572831774654}
   - component: {fileID: 6242174402385499776}
-  - component: {fileID: 3757683476704014875}
+  - component: {fileID: 5211264395773036018}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -209,12 +209,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: "\u6717\u59C6\u9152(\u6D4B\u8BD5)"
-  ID: 0
   Description: 
   FileName: RUM_test
-  HealthEffect: -10
-  PressureEffect: -10
-  DrunkEffect: 15
+  t: 0
+  Sweet: 0
+  Acid: 0
+  Alcohol: 0
+  Temperature: 0
+  Abnormal: 0
+  control: 0
 --- !u!114 &6242174402385499776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af36532f27345854e9b94ae8b3f8590d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3757683476704014875
+  DescriptionPanel: {fileID: 0}
+  item: {fileID: 8040731572831774654}
+--- !u!114 &5211264395773036018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,4 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticPos: {x: 0, y: 0, z: 0}
+  liquidMaterial: {fileID: 2100000, guid: efeba3f269118b3419dec9c0836a0c9a, type: 2}
   spinSpeed: 360
+  item: {fileID: 8040731572831774654}

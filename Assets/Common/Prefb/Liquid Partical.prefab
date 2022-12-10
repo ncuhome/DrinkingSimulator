@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7959507943722452814}
   - component: {fileID: 7959507943722452811}
   - component: {fileID: 7959507943722452812}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Liquid Partical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
