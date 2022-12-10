@@ -6,74 +6,6 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
 
-public class ItemFormula : MonoBehaviour
-{
-    /// <summary>
-    /// 配方文件路径
-    /// </summary>
-    public string path;
-    /// <summary>
-    /// 配方表
-    /// </summary>
-    static Formula[] formulas;
-
-    #region 功能
-    /// <summary>
-    /// 获取合成物品,
-    /// </summary>
-    /// <param name="materials">添加的全部配方</param>
-    /// <returns></returns>
-    public static string Make(string[] materials)
-    {
-        foreach (Formula formula in formulas)
-        {
-            if (formula.isMake(materials))
-            {
-                string[] backM = formula.getMaterials(materials);
-                if (backM.Length > 0) { return "不可名状物"; }
-                return formula.Name;
-            }
-        }
-        return "不可名状物";
-    }
-
-    /// <summary>
-    /// 更新配方表
-    /// </summary>
-    public void UpdateFormula()
-    {
-        //读取配方表
-        string formulaFile = Application.dataPath + path;
-        string txt = File.ReadAllText(formulaFile);
-        FormulaT[] formulasT = JsonConvert.DeserializeObject<FormulaT[]>(txt);
-        formulas = new Formula[formulasT.Length];
-        for (int i = 0; i < formulas.Length; i++)
-        {
-            formulas[i] = new Formula(formulasT[i]);
-        }
-    }
-    #endregion
-
-    #region Unity
-
-    private void Awake()
-    {
-        UpdateFormula();
-    }
-
-    void Start()
-    {
-
-    }
-
-
-    void Update()
-    {
-
-    }
-    #endregion
-}
-
 class Formula
 {
     /// <summary>
@@ -105,7 +37,7 @@ class Formula
         {
             bool mk = false;
             if (m == "Null") { continue; }
-            foreach (string n in materials)
+            foreach(string n in materials)
             {
                 if (n == m) { mk = true; }
             }
