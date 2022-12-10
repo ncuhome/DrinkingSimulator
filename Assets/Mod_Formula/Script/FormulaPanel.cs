@@ -102,8 +102,8 @@ public class FormulaPanel : MonoBehaviour
             Posts.Add(obj);
 
             RectTransform rt = obj.GetComponent<RectTransform>();
-            ux = -185;
-            uy = -250 - 250 * (i / 5);
+            ux = 0;
+            uy = -250 - 250 * i;
             rt.SetParent(Container.transform);
             rt.localPosition = new Vector2(ux, uy);
 
