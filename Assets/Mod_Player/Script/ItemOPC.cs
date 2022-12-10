@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class ItemOPC : MonoBehaviour
 {
+    public GameObject Item;
     private Vector3 screenPos; //????
     private Vector3 offset; //??????????
 
     /// <summary>
     /// ????????????????????
     /// </summary>
-    public Vector3 staticPos;
     public Material liquidMaterial;
     private Boolean isDrag = false; //????????
     private Boolean startPour = false; // ????????
@@ -24,16 +24,17 @@ public class ItemOPC : MonoBehaviour
     public Item item;
 
     #region ??????
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        item.transform.localScale = new Vector2(21.74f, 23.04f);
         offset = screenPos - Input.mousePosition;
         isDrag = true;
     }
 
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
-        if (startPour) return;
+        if (Shaker.Instance.startPour) return;
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 
@@ -47,22 +48,24 @@ public class ItemOPC : MonoBehaviour
 
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         if (Shaker.Instance.inShaker) // ???????????????????
         {
-            if ((!startPour))
+            if ((!Shaker.Instance.startPour))
             {
-                item.control = true;
                 StartPour();
             }
         }
         else
         {
-            item.control = false;
-            transform.position = staticPos;
+            if (Item != null)
+            {
+                Item.GetComponent<BoxCollider2D>().enabled = true;
+                Item.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            Destroy(this.gameObject);
         }
-        isDrag = false;
     }
     #endregion
     /// <summary>
@@ -97,8 +100,12 @@ public class ItemOPC : MonoBehaviour
     public IEnumerator EndPour()
     {
         yield return new WaitForSeconds(0.4f);
-        transform.position = staticPos;
-        startPour = false;
+        if (Item != null)
+        {
+            Item.GetComponent<BoxCollider2D>().enabled = true;
+            Item.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        Destroy(this.gameObject);
     }
 
     #region Unity
@@ -109,13 +116,7 @@ public class ItemOPC : MonoBehaviour
 
     void Update()
     {
-        // ??????
-        if ((!isDrag) && (!startPour))
-        {
-            staticPos = transform.position;
-        }
 
-        // ????
         transform.eulerAngles = new Vector3(0f, 0f, curEuler_z);
         if (targetEuler_z != 0)
         {

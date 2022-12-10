@@ -45,7 +45,10 @@ public class Item : MonoBehaviour
     /// 是否处于控制权
     /// </summary>
     public bool control;
-
+    /// <summary>
+    /// 液体材质
+    /// </summary>
+    //public Material LiquidMaterial;
     public void SetData(ItemTemplate template)
     {
         Name = template.Name;
@@ -56,6 +59,7 @@ public class Item : MonoBehaviour
         Alcohol = template.Alcohol;
         Temperature = template.Temperature;
         Abnormal = template.Abnormal;
+        //LiquidMaterial = template.LiquidMaterial;
     }
 }
 
@@ -94,4 +98,8 @@ public class ItemTemplate
     /// 猎奇程度
     /// </summary>
     public int Abnormal;
+    /// <summary>
+    /// 液体材质
+    /// </summary>
+    //public Material LiquidMaterial;
 }

@@ -12,17 +12,29 @@ public class ItemCollider : MonoBehaviour
     /// ???????
     /// </summary>
     public Item item;
+    private GameObject itemDrag;
+    private ItemOPC itemOPC;
 
     #region ??????
     private void OnMouseDown()
     {
-        item.control = true;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        itemDrag = Instantiate(gameObject, transform.localPosition, transform.rotation);
+        Destroy(itemDrag.GetComponent<ItemCollider>());
+        itemDrag.GetComponent<BoxCollider2D>().enabled = true;
+        itemDrag.GetComponent<SpriteRenderer>().enabled = true;
+        itemOPC = itemDrag.AddComponent<ItemOPC>();
+        itemOPC.Item = gameObject;
+        itemOPC.item = itemOPC.GetComponent<Item>();
+        itemOPC.liquidMaterial = Resources.Load<Material>("Material/LightBlue");
+        DescriptionPanel.Disappear();
+        itemOPC.OnMouseDown();
     }
 
     private void OnMouseDrag()
     {
-        item.control = true;
-        DescriptionPanel.Disappear();
+        itemOPC.OnMouseDrag();
     }
 
     private void OnMouseEnter()
@@ -37,19 +49,19 @@ public class ItemCollider : MonoBehaviour
 
     private void OnMouseUp()
     {
-        
+        itemOPC.OnMouseUp();
     }
     #endregion
 
     #region Unity
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
     #endregion
 }

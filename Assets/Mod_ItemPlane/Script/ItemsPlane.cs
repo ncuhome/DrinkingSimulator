@@ -102,7 +102,7 @@ public class ItemsPlane : MonoBehaviour
         for (int i = 0; i < Items.Count; i++)
         {
             GameObject item = Items[i];
-            if (item.GetComponent<Item>().control) { continue; }
+            //if (item.GetComponent<Item>().control) { continue; }
             float pt = item.GetComponent<Item>().t;
             pt += speedT * Time.deltaTime;
             while (pt > 360)
@@ -276,7 +276,7 @@ public class ItemsPlane : MonoBehaviour
 
     void Update()
     {
-        if (speedT != 0)
+        //if (speedT != 0)
         {
             Rotate();
         }
