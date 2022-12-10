@@ -192,7 +192,15 @@ public class ItemsPlane : MonoBehaviour
         obj.GetComponent<ItemCollider>().DescriptionPanel = ItemDescription;
         obj.GetComponent<Item>().SetData(itemsys.Items[pindex]);
         obj.GetComponent<Item>().t = pt;
-        obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[pindex].FileName);
+        if (itemsys.Items[pindex].FileName != " ")
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[pindex].FileName);
+        }
+        else
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/RUM_test");
+        }
+        
         Items.Add(obj);
     }
     /// <summary>

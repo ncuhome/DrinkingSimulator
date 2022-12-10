@@ -18,6 +18,8 @@ public class ItemCollider : MonoBehaviour
     #region ??????
     private void OnMouseDown()
     {
+        DescriptionPanel.Disappear();
+        if (Shaker.Instance.startPour) { return; }
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
         itemDrag = Instantiate(gameObject, transform.localPosition, transform.rotation);
@@ -27,8 +29,14 @@ public class ItemCollider : MonoBehaviour
         itemOPC = itemDrag.AddComponent<ItemOPC>();
         itemOPC.Item = gameObject;
         itemOPC.item = itemOPC.GetComponent<Item>();
-        itemOPC.liquidMaterial = Resources.Load<Material>("Material/LightBlue");
-        DescriptionPanel.Disappear();
+        if (GetComponent<Item>().LiquidMaterial != null)
+        {
+            itemOPC.liquidMaterial = Resources.Load<Material>("Material/" + GetComponent<Item>().LiquidMaterial);
+        }
+        else
+        {
+            itemOPC.liquidMaterial = Resources.Load<Material>("Material/LightBlue");
+        }
         itemOPC.OnMouseDown();
     }
 
