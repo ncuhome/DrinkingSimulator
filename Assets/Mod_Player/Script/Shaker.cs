@@ -24,6 +24,7 @@ public class Shaker : MonoBehaviour
 
     private string[] wine = new string[6];
     private int wineIndex = 0;
+    public CupLid cupLid;
 
     private void Awake()
     {
@@ -123,8 +124,16 @@ public class Shaker : MonoBehaviour
         wineIndex++;
     }
 
-    public void StartMix()
+    public void CloseLid()
     {
+        cupLid.startMove = true;
+        cupLid.targetPos_y = 0.45f;
+        StartCoroutine(StartMix());
+    }
+
+    public IEnumerator StartMix()
+    {
+        yield return new WaitForSeconds(1.2f);
         startMix = true;
         targetEuler_z = 30f;
         StartCoroutine(EndMix());
@@ -134,9 +143,9 @@ public class Shaker : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         startMix = false;
-        string targetWine = ItemFormula.Make(wine);
-        //Debug.Log(wine[0] + " " + wine[1] + " " + wine[2] + " " + wine[3] + " " + wine[4] + " " + wine[5]);
-        //Debug.Log(targetWine);
+        string targetWine = FormulaPanel.Make(wine);
+        Debug.Log(wine[0] + " " + wine[1] + " " + wine[2] + " " + wine[3] + " " + wine[4] + " " + wine[5]);
+        Debug.Log(targetWine);
         wine = new string[6];
         for (int i = 0; i <= 5; i++)
         {
@@ -166,7 +175,7 @@ public class Shaker : MonoBehaviour
         if (startPour) { return; }
         if (wineIndex >= 2)
         {
-            StartMix();
+            CloseLid();
         }
         else
         {
