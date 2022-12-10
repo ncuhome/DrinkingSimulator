@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class ItemCollider : MonoBehaviour
 {
-    #region 鼠标操作事件
+    /// <summary>
+    /// ????
+    /// </summary>
+    public ItemDescription DescriptionPanel;
+    /// <summary>
+    /// ???????
+    /// </summary>
+    public Item item;
+
+    #region ??????
     private void OnMouseDown()
     {
-        
+        item.control = true;
     }
 
     private void OnMouseDrag()
     {
-        
+        item.control = true;
+        DescriptionPanel.Disappear();
     }
 
     private void OnMouseEnter()
     {
-        
+        DescriptionPanel.Display(item.Name, item.Description);
     }
 
     private void OnMouseExit()
     {
-        
+        DescriptionPanel.Disappear();
     }
 
     private void OnMouseUp()

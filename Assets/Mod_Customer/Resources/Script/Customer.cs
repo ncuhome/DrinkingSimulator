@@ -68,18 +68,18 @@ public class Customer : MonoBehaviour
         GameObject al = collision.gameObject;
         if(type == 0)
         {
-            if(al.GetComponent<Item>().ID == (int)order[0])
-            {
-                Debug.Log("Yes");
-                isevaluate = true;
-                Destroy(al);
-            }
-            else
-            {
-                Debug.Log("No");
-                isevaluate = true;
-                Destroy(al);
-            }
+            // if(al.GetComponent<Item>().ID == (int)order[0])
+            // {
+            //     Debug.Log("Yes");
+            //     isevaluate = true;
+            //     Destroy(al);
+            // }
+            // else
+            // {
+            //     Debug.Log("No");
+            //     isevaluate = true;
+            //     Destroy(al);
+            // }
         }
         else
         {

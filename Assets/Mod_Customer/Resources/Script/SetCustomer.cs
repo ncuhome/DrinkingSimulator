@@ -22,12 +22,12 @@ public class SetCustomer : MonoBehaviour
     /*
     public void DelCustomer()
     {
-        Customer cus;
+        // Customer cus;
 
-        if(cus.isevaluate == true)
-        {
-            //leave
-        }
+        // if(cus.isevaluate == true)
+        // {
+        //     //leave
+        // }
     }
     */
 
