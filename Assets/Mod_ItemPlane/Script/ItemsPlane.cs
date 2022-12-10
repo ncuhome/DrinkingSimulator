@@ -282,13 +282,26 @@ public class ItemsPlane : MonoBehaviour
             //Debug.Log($"OLD:{mouse_old.y}  NEW:{Input.mousePosition.y}");
             if (Input.mousePosition.y < mouse_old.y)
             {
-
-                speedT -= speedAd;
+                if(isRight)
+                {
+                    speedT += speedAd;
+                }
+                else
+                {
+                    speedT -= speedAd;
+                }
+               
             }
             else
             {
-
-                speedT += speedAd;
+                if (isRight)
+                {
+                    speedT -= speedAd;
+                }
+                else
+                {
+                    speedT += speedAd;
+                }
             }
             mouse_old = Input.mousePosition;
         }
@@ -327,7 +340,14 @@ public class ItemsPlane : MonoBehaviour
             {
                 while (dv > 0)
                 {
-                    speedT += 100 * speedAdWl;
+                    if (isRight)
+                    {
+                        speedT -= 100 * speedAdWl;
+                    }
+                    else
+                    {
+                        speedT += 100 * speedAdWl;
+                    }
                     dv -= 0.1f;
                 }
             }
@@ -335,7 +355,14 @@ public class ItemsPlane : MonoBehaviour
             {
                 while (dv < 0)
                 {
-                    speedT -= 100 * speedAdWl;
+                    if (isRight)
+                    {
+                        speedT += 100 * speedAdWl;
+                    }
+                    else
+                    {
+                        speedT -= 100 * speedAdWl;
+                    }
                     dv += 0.1f;
                 }
             }
