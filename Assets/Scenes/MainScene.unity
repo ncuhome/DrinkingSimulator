@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388d88a46f345f146ab0ad2da68ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemsPrefb: {fileID: 6012418287037055790, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
+  ItemsPrefb: {fileID: 6012418287037055790, guid: 69afb15094475624fb62371f12cca5b3, type: 3}
   isRight: 0
   index: 0
   aimIndex: 0
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388d88a46f345f146ab0ad2da68ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemsPrefb: {fileID: 6012418287037055790, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
+  ItemsPrefb: {fileID: 6012418287037055790, guid: 69afb15094475624fb62371f12cca5b3, type: 3}
   isRight: 1
   index: 0
   aimIndex: 0
