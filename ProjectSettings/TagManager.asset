@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shaker
+  - Item
   layers:
   - Default
   - TransparentFX

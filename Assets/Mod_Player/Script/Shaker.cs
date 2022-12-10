@@ -57,6 +57,7 @@ public class Shaker : MonoBehaviour
 
     public void StartPour()
     {
+        inShaker = false;
         startPour = true;
     }
 
@@ -74,11 +75,17 @@ public class Shaker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        inShaker = true;
+        if (other.transform.tag == "Item")
+        {
+            inShaker = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        inShaker = false;
+        if (other.transform.tag == "Item")
+        {
+            inShaker = false;
+        }
     }
 }
