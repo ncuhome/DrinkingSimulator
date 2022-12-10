@@ -22,7 +22,6 @@ public class ItemFormula : MonoBehaviour
     /// 获取合成物品,
     /// </summary>
     /// <param name="materials">添加的全部配方</param>
-    /// <param name="backM">返回的</param>
     /// <returns></returns>
     public static string Make(string[] materials)
     {
