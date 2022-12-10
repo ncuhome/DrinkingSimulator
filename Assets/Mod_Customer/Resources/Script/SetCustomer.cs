@@ -9,7 +9,8 @@ public class SetCustomer : MonoBehaviour
 
     private int maxc = 1;//顾客数量
 
-    public ArrayList customerlist = new ArrayList();
+    //public ArrayList customerlist = new ArrayList();
+    public Customer[] customerlist;
     
     /// <summary>
     /// 生成一个顾客(1:人类\2：兽人\3：精灵)
@@ -38,14 +39,22 @@ public class SetCustomer : MonoBehaviour
         return cus.AddComponent<Customer>();
     }
 
+
+
     IEnumerator Wink()
     {
+        Debug.Log("bbb");
+        Vector4 now1 = wink.GetVector("_Param");
+        float n = Mathf.Lerp(now1.y, 0f, 0.01f);
+        wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
+        yield return new WaitForSeconds(4f);//5f
 
-        //Vector4 now1 = wink.GetVector("_Param");
-        //float n = Mathf.Lerp(now1.y, 0f, 0.9f * Time.deltaTime);
-        //wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
-        customerlist.Add(InitCutomer());
-        yield return new WaitForSeconds(1f);//5f
+        Destroy(customerlist[0].gameObject);
+        customerlist[0] = null;
+        yield return new WaitForSeconds(0.5f);
+
+        customerlist[0] = InitCutomer();
+
 
     }
 
@@ -54,27 +63,30 @@ public class SetCustomer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        customerlist = new Customer[maxc];
         wink.SetVector("_Param", new Vector4(0.8f, 1f, 1f, 1f));
-
+        customerlist[0] = InitCutomer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (customerlist.Count < maxc)
+        if(customerlist[0] != null)
         {
-            StartCoroutine("Wink");
+            if (customerlist[0].evaluate != 0 && customerlist[0].isput == false)
+            {
+                StartCoroutine("Wink");
+            }
+            else
+            {
+                StopCoroutine("Wink");
 
+                Vector4 now2 = wink.GetVector("_Param");
+                float m = Mathf.Lerp(now2.y, 1f, 0.6f * Time.deltaTime);
+                wink.SetVector("_Param", new Vector4(0.8f, m, 1f, 1f));
+
+            }
         }
-        else
-        {
-            StopCoroutine("Wink");
-
-            Vector4 now2 = wink.GetVector("_Param");
-            float m = Mathf.Lerp(now2.y, 1f, 0.6f * Time.deltaTime);
-            wink.SetVector("_Param", new Vector4(0.8f, m, 1f, 1f));
-        }
-
 
     }
 }
