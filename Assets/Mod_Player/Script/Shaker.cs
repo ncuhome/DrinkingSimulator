@@ -57,6 +57,7 @@ public class Shaker : MonoBehaviour
 
     public void StartPour()
     {
+        inShaker = false;
         startPour = true;
     }
 
