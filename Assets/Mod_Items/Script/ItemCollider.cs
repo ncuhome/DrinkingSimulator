@@ -5,15 +5,15 @@ using UnityEngine;
 public class ItemCollider : MonoBehaviour
 {
     /// <summary>
-    /// 描述浮窗
+    /// 描述面板对象
     /// </summary>
     public ItemDescription DescriptionPanel;
     /// <summary>
-    /// 关联的物品信息
+    /// 物品对象(自身)
     /// </summary>
     public Item item;
 
-    #region 鼠标操作事件
+    #region 鼠标监听
     private void OnMouseDown()
     {
         item.control = true;
