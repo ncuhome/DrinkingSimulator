@@ -103,7 +103,7 @@ public class ItemsPlane : MonoBehaviour
         else if (t < -360) { t += 360; }
 
 
-        plane.transform.localRotation = Quaternion.Euler(new Vector3(60, 0, t * (float)Math.PI / 180));
+        plane.transform.localRotation = Quaternion.Euler(new Vector3(60, 0, t ));
         for (int i = 0; i < Items.Count; i++)
         {
             GameObject item = Items[i];
@@ -327,10 +327,7 @@ public class ItemsPlane : MonoBehaviour
 
     void Update()
     {
-        if (speedT != 0)
-        {
-            Rotate();
-        }
+        Rotate();
         //Debug.Log(Enter);
         if (Enter)
         {

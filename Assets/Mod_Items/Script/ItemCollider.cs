@@ -42,6 +42,7 @@ public class ItemCollider : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (Shaker.Instance.startPour) { return; }
         itemOPC.OnMouseDrag();
     }
 
@@ -57,6 +58,7 @@ public class ItemCollider : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (Shaker.Instance.startPour) { return; }
         itemOPC.OnMouseUp();
     }
     #endregion
