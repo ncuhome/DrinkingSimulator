@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388d88a46f345f146ab0ad2da68ee836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemsPrefb: {fileID: 6012418287037055790, guid: 7b32dbde841306142b8f3d7132c6267c, type: 3}
+  ItemsPrefb: {fileID: 6012418287037055790, guid: 69afb15094475624fb62371f12cca5b3, type: 3}
   index: 0
   aimIndex: 0
   speedT: 0
@@ -1699,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 911748674}
     - target: {fileID: 6343427721165599521, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: dataPath
-      value: Items
+      value: Materials1
       objectReference: {fileID: 0}
     - target: {fileID: 6343427721165599523, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_Name
