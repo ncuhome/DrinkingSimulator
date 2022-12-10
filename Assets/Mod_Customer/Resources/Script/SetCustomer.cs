@@ -37,18 +37,6 @@ public class SetCustomer : MonoBehaviour
         }
         return cus.AddComponent<Customer>();
     }
-<<<<<<< Updated upstream
-    /*
-    public void DelCustomer()
-    {
-        Customer cus;
-
-        if(cus.isevaluate == true)
-        {
-            //leave
-        }
-=======
-
 
     IEnumerator Wink()
     {
@@ -59,10 +47,7 @@ public class SetCustomer : MonoBehaviour
         customerlist.Add(InitCutomer());
         yield return new WaitForSeconds(1f);//5f
 
-
->>>>>>> Stashed changes
     }
-    */
 
 
 

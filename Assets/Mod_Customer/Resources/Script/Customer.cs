@@ -98,15 +98,25 @@ public class Customer : MonoBehaviour
         {
             myo += xs[order[i]];
 
-            if (demand[i - 1] <= min)
+            int k;
+            if(type == 0)
+            {
+                k = i - 1;
+            }
+            else
+            {
+                k = 1;
+            }
+
+            if (demand[k] <= min)
             {
                 myo += "低的";
             }
-            else if (demand[i - 1] <= mid)
+            else if (demand[k] <= mid)
             {
                 myo += "适中的";
             }
-            else if (demand[i - 1] <= max)
+            else if (demand[k] <= max)
             {
                 myo += "高的";
             }
@@ -115,29 +125,7 @@ public class Customer : MonoBehaviour
 
         if(type == 0)
         {
-<<<<<<< Updated upstream
-            if(al.GetComponent<Item>().ID == (int)order[0])
-            {
-                Debug.Log("Yes");
-                isevaluate = true;
-                Destroy(al);
-            }
-            else
-            {
-                Debug.Log("No");
-                isevaluate = true;
-                Destroy(al);
-            }
-        }
-        else
-        {
-            /*
-            int sweet = al.GetComponent<Item>().Sweet;
-            int acid = al.GetComponent<Item>().Acid;
-            int alcohol = al.GetComponent<Item>().Alcohol;
-            int temperature = al.GetComponent<Item>().Temperature;
-            int abnormal = al.GetComponent<Item>().Abnormal;
-=======
+
             myo += productlist[order[0]];
         }
         else
@@ -165,7 +153,6 @@ public class Customer : MonoBehaviour
     public int StartEvaluate(GameObject al)
     {
         int mye = 0;
->>>>>>> Stashed changes
 
         int sweet = al.GetComponent<Item>().Sweet;
         int acid = al.GetComponent<Item>().Acid;
@@ -226,7 +213,6 @@ public class Customer : MonoBehaviour
             {
                 mye = 2;
             }
-            */
         }
         else
         {
