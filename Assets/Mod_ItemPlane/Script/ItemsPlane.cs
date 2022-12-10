@@ -16,6 +16,11 @@ public class ItemsPlane : MonoBehaviour
     #endregion
 
     #region 属性
+
+    /// <summary>
+    /// 是否是右边的盘子
+    /// </summary>
+    public bool isRight;
     /// <summary>
     /// 当前转盘的所在索引位置
     /// </summary>
@@ -114,8 +119,27 @@ public class ItemsPlane : MonoBehaviour
                 pt += 360;
             }
             double nt = Math.PI * pt / 180;
-            item.transform.position = new Vector3(-300 + 500 * (float)Math.Cos(nt), 280 + 200 * (float)Math.Sin(nt),(float)nt-100);
-            item.transform.localScale = new Vector2(21.74f * (0.75f-(float)nt/10), 23.04f * (0.75f - (float)nt/10));
+
+            float lx = -300 + 500 * (float)Math.Cos(nt);
+            float ly = 280 + 200 * (float)Math.Sin(nt);
+            float lz = (float)nt - 100;
+
+            float sx = 21.74f * (0.75f - (float)nt / 10);
+            float sy = 23.04f * (0.75f - (float)nt / 10);
+
+            if (isRight)
+            {
+                lz = -(float)nt - 100;
+                sx = 21.74f * (0.75f + (float)nt / 10);
+                sy = 21.74f * (0.75f + (float)nt / 10);
+                nt = Math.PI * (pt+180) / 180;
+                lx = 1920 + 300 + 500 * (float)Math.Cos(nt);
+                ly = 280 + 200 * (float)Math.Sin(nt);
+            }
+
+            item.transform.position = new Vector3(lx, ly, lz);
+
+            item.transform.localScale = new Vector2(sx, sy);
             item.GetComponent<Item>().t = pt;
         }
 
@@ -172,13 +196,21 @@ public class ItemsPlane : MonoBehaviour
     /// <param name="pt"></param>
     public void CreatItem(float pt, int itemindex)
     {
+        float lx = -300 + 500 * (float)Math.Cos(Math.PI * pt / 180);
+        float ly = 280 + 200 * (float)Math.Sin(Math.PI * pt / 180);
+
+        if(isRight)
+        {
+            lx = 1920 + 300 + 500 * (float)Math.Cos(Math.PI * (pt + 180) / 180);
+            ly = 280 + 200 * (float)Math.Sin(Math.PI * (pt + 180) / 180);
+        }
+
         GameObject obj = Instantiate(ItemsPrefb,
-            new Vector2(-300 + 500 * (float)Math.Cos(Math.PI * pt / 180), 280 + 200 * (float)Math.Sin(Math.PI * pt / 180)),
+            new Vector2(lx, ly),
             Quaternion.identity);
         obj.transform.rotation = Quaternion.identity;
         int pindex = itemindex;
 
-        //Debug.Log($"PRE  MAX:{itemsys.Items.Count} NOW:{pindex}");
         while (pindex < 0)
         {
             pindex += itemsys.Items.Count;
@@ -188,11 +220,17 @@ public class ItemsPlane : MonoBehaviour
             pindex -= itemsys.Items.Count;
         }
 
-        // Debug.Log($"NOW  MAX:{itemsys.Items.Count} NOW:{pindex}");
         obj.GetComponent<ItemCollider>().DescriptionPanel = ItemDescription;
         obj.GetComponent<Item>().SetData(itemsys.Items[pindex]);
         obj.GetComponent<Item>().t = pt;
-        obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[pindex].FileName);
+        if(itemsys.Items[pindex].FileName != " ")
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + itemsys.Items[pindex].FileName);
+        }
+        else
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + "RUM_test");
+        }
         Items.Add(obj);
     }
     /// <summary>

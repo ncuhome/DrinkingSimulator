@@ -40,6 +40,10 @@ public class ItemSystem : MonoBehaviour
     public ItemsPlane plane;
     #endregion
     /// <summary>
+    /// 是否为选择面板
+    /// </summary>
+    public bool selectedPanel = false;
+    /// <summary>
     /// 面板是否展开
     /// </summary>
     private bool openned = false;
@@ -119,7 +123,14 @@ public class ItemSystem : MonoBehaviour
 
             GameObject ii = rt.Find("ItemImage").gameObject;
             int select = i;
-            ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/"+ Items[i].FileName);
+            if(Items[i].FileName != " ")
+            {
+                ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + Items[i].FileName);
+            }
+            else
+            {
+                ii.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mod_Items/" + "RUM_test");
+            }
             ii.GetComponent<PostCollider>().enter = delegate () { Select(select); };
             ii.GetComponent<PostCollider>().pressed = delegate () { Checkout(select); };
 
@@ -136,7 +147,10 @@ public class ItemSystem : MonoBehaviour
         //Debug.Log(txt);
         Items = JsonConvert.DeserializeObject<List<ItemTemplate>>(txt);
 
-        plane.FirstDisplay();
+        if(selectedPanel)
+        {
+            plane.FirstDisplay();
+        }
     }
     #endregion
 }
