@@ -58,6 +58,7 @@ class Formula
         List<string> list = new List<string>();
         foreach(string m in materials)
         {
+            if (m == "Null") { continue; }
             list.Add(m);
         }
         foreach(string m in Materials)
