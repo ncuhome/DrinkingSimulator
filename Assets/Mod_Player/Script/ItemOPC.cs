@@ -54,7 +54,22 @@ public class ItemOPC : MonoBehaviour
         {
             if ((!Shaker.Instance.startPour))
             {
-                StartPour();
+                if (Shaker.Instance.CanAddWine())
+                {
+                    if (GetComponent<Item>().State == "Liquid")
+                    {
+                        StartPour();
+                    }
+                    if (GetComponent<Item>().State == "Solid")
+                    {
+                        AddSolid();
+                    }
+                }
+                else
+                {
+                    //提示装满了
+                    Debug.Log("装满了");
+                }
             }
         }
         else
@@ -76,7 +91,6 @@ public class ItemOPC : MonoBehaviour
         startPour = true;
         Shaker.Instance.wineOPC = this;
         transform.position = Shaker.Instance.pourPos;
-        Shaker.Instance.meshRenderer.material = liquidMaterial;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
     }
@@ -85,6 +99,7 @@ public class ItemOPC : MonoBehaviour
     {
         Shaker.Instance.meshRenderer.material = liquidMaterial;
         Shaker.Instance.InstantiateLiquid();
+        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
     }
@@ -105,6 +120,21 @@ public class ItemOPC : MonoBehaviour
             Item.GetComponent<BoxCollider2D>().enabled = true;
             Item.GetComponent<SpriteRenderer>().enabled = true;
         }
+        Shaker.Instance.inShaker = false;
+        Destroy(this.gameObject);
+    }
+
+    private void AddSolid()
+    {
+        Shaker.Instance.StartPour();
+        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (Item != null)
+        {
+            Item.GetComponent<BoxCollider2D>().enabled = true;
+            Item.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        Shaker.Instance.pourTime = 0f;
+        Shaker.Instance.startPour = false;
         Shaker.Instance.inShaker = false;
         Destroy(this.gameObject);
     }
