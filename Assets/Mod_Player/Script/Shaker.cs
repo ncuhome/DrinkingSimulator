@@ -134,15 +134,25 @@ public class Shaker : MonoBehaviour
     public IEnumerator StartMix()
     {
         yield return new WaitForSeconds(1.2f);
+        cupLid.startMove = false;
         startMix = true;
         targetEuler_z = 30f;
+        StartCoroutine(OpenLid());
+    }
+
+    public IEnumerator OpenLid()
+    {
+        yield return new WaitForSeconds(2f);
+        startMix = false;
+        cupLid.startMove = true;
+        cupLid.targetPos_y = 1.5f;
         StartCoroutine(EndMix());
     }
 
     public IEnumerator EndMix()
     {
-        yield return new WaitForSeconds(2f);
-        startMix = false;
+        yield return new WaitForSeconds(1f);
+        cupLid.startMove = false;
         string targetWine = FormulaPanel.Make(wine);
         Debug.Log(wine[0] + " " + wine[1] + " " + wine[2] + " " + wine[3] + " " + wine[4] + " " + wine[5]);
         Debug.Log(targetWine);
@@ -170,7 +180,7 @@ public class Shaker : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (startPour) { return; }
         if (wineIndex >= 2)

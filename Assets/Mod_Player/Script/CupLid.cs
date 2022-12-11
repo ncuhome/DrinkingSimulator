@@ -50,4 +50,9 @@ public class CupLid : MonoBehaviour
         }
 
     }
+
+    private void OnMouseDown()
+    {
+        Shaker.Instance.OnMouseDown();
+    }
 }

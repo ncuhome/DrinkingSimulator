@@ -56,7 +56,14 @@ public class ItemOPC : MonoBehaviour
             {
                 if (Shaker.Instance.CanAddWine())
                 {
-                    StartPour();
+                    if (GetComponent<Item>().State == "Liquid")
+                    {
+                        StartPour();
+                    }
+                    if (GetComponent<Item>().State == "Solid")
+                    {
+                        AddSolid();
+                    }
                 }
                 else
                 {
@@ -114,6 +121,21 @@ public class ItemOPC : MonoBehaviour
             Item.GetComponent<BoxCollider2D>().enabled = true;
             Item.GetComponent<SpriteRenderer>().enabled = true;
         }
+        Shaker.Instance.inShaker = false;
+        Destroy(this.gameObject);
+    }
+
+    private void AddSolid()
+    {
+        Shaker.Instance.StartPour();
+        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (Item != null)
+        {
+            Item.GetComponent<BoxCollider2D>().enabled = true;
+            Item.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        Shaker.Instance.pourTime = 0f;
+        Shaker.Instance.startPour = false;
         Shaker.Instance.inShaker = false;
         Destroy(this.gameObject);
     }
