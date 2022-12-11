@@ -49,6 +49,10 @@ public class Item : MonoBehaviour
     /// 液体材质
     /// </summary>
     public string LiquidMaterial;
+    /// <summary>
+    /// 物体状态
+    /// </summary>
+    public string State;
     public void SetData(ItemTemplate template)
     {
         Name = template.Name;
@@ -60,6 +64,7 @@ public class Item : MonoBehaviour
         Temperature = template.Temperature;
         Abnormal = template.Abnormal;
         LiquidMaterial = template.LiquidMaterial;
+        State = template.State;
     }
 }
 
@@ -102,4 +107,8 @@ public class ItemTemplate
     /// 液体材质
     /// </summary>
     public string LiquidMaterial;
+    /// <summary>
+    /// 物体状态
+    /// </summary>
+    public string State;
 }

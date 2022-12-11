@@ -124,7 +124,7 @@ public class FormulaPanel : MonoBehaviour
             {
                 if (formulas[i].Materials[k] == "Null") { break; }
                 Debug.Log($"NOW{i}");
-                image = obj.transform.Find("Material"+(k+1)).GetComponent<Image>();
+                image = obj.transform.Find("Material" + (k + 1)).GetComponent<Image>();
 
                 spriteName = " ";
                 foreach (ItemTemplate itm in Items)
@@ -134,8 +134,8 @@ public class FormulaPanel : MonoBehaviour
                         spriteName = itm.FileName; break;
                     }
                 }
-                if (spriteName != " "){image.sprite = Resources.Load<Sprite>("Mod_Items/" + spriteName);}
-                else{image.sprite = Resources.Load<Sprite>("Mod_Items/" + "RUM_test");}
+                if (spriteName != " ") { image.sprite = Resources.Load<Sprite>("Mod_Items/" + spriteName); }
+                else { image.sprite = Resources.Load<Sprite>("Mod_Items/" + "RUM_test"); }
             }
 
         }

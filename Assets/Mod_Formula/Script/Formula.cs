@@ -5,6 +5,7 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
+using System;
 
 class Formula
 {
@@ -37,9 +38,13 @@ class Formula
         {
             bool mk = false;
             if (m == "Null") { continue; }
-            foreach(string n in materials)
+            for(int i=0;i<materials.Length;i++)
             {
-                if (n == m) { mk = true; }
+                if (materials[i] == m)
+                {
+                    mk = true;
+                    break;
+                }
             }
             if (!mk) { return false; }
         }
@@ -54,16 +59,17 @@ class Formula
         List<string> list = new List<string>();
         foreach (string m in materials)
         {
-            bool mk = false;
             if (m == "Null") { continue; }
-            foreach (string n in Materials)
-            {
-                if (n == m) { mk = true; }
-            }
-            if (!mk) { list.Add(m); }
+            list.Add(m);
+        }
+
+        foreach (string m in Materials)
+        {
+            list.Remove(m);
         }
         return list.ToArray();
     }
+
 }
 
 class FormulaT

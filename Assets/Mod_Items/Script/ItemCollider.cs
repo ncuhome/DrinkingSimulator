@@ -29,7 +29,7 @@ public class ItemCollider : MonoBehaviour
         itemOPC = itemDrag.AddComponent<ItemOPC>();
         itemOPC.Item = gameObject;
         itemOPC.item = itemOPC.GetComponent<Item>();
-        if (GetComponent<Item>().LiquidMaterial != null)
+        if (GetComponent<Item>().LiquidMaterial != " ")
         {
             itemOPC.liquidMaterial = Resources.Load<Material>("Material/" + GetComponent<Item>().LiquidMaterial);
         }
