@@ -257,7 +257,6 @@ public class Customer : MonoBehaviour
 
     IEnumerator PutText(string text)
     {
-        Debug.Log("aa");
         isput = true;
         for (int j = 0; j < text.Length; j++)
         {
@@ -284,13 +283,13 @@ public class Customer : MonoBehaviour
                 int e = StartEvaluate(al, 1);
                 StartCoroutine("PutText", GetEvaluation(e));
                 evaluate = e;
-                //Destroy(al);
+                Destroy(al);
             }
             else
             {
                 StartCoroutine("PutText", GetEvaluation(1));
                 evaluate = 1;
-                //Destroy(al);
+                Destroy(al);
             }
         }
         else
@@ -298,7 +297,7 @@ public class Customer : MonoBehaviour
             int e = StartEvaluate(al, 0);
             StartCoroutine("PutText", GetEvaluation(e));
             evaluate = e;
-            //Destroy(al);
+            Destroy(al);
         }
 
 

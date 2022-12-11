@@ -19,22 +19,20 @@ public class SetCustomer : MonoBehaviour
     {
         GameObject cus;
         int n = UnityEngine.Random.Range(1, 4);
+        int m = UnityEngine.Random.Range(1, 4);
         cus = Instantiate(Resources.Load("Prefb/Customer" + n.ToString())) as GameObject;
 
         if (n == 1)
         {
-            int m = UnityEngine.Random.Range(1, 4);
             cus.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Image/person" + m.ToString());
         }
         else if (n == 2)
         {
-            int m = UnityEngine.Random.Range(1, 3);
             cus.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Image/animal" + m.ToString());
         }
         else if (n == 3)
         {
-            //int m = UnityEngine.Random.Range(1, 3);
-            //cus.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("kk") as Sprite;
+            cus.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Image/genie" + m.ToString());
         }
         return cus.AddComponent<Customer>();
     }
