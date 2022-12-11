@@ -193,35 +193,35 @@ public class Customer : MonoBehaviour
         {
             if (order[i] == 0)
             {
-                if ((demand[i] >= sweet - r) && demand[i] <= sweet + r)
+                if ((demand[i] >= sweet - 30 - r) && demand[i] <= sweet - 30 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 1)
             {
-                if ((demand[i] >= acid - r) && demand[i] <= acid + r)
+                if ((demand[i] >= acid + 20 - r) && demand[i] <= acid + 20 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 2)
             {
-                if ((demand[i] >= alcohol - r) && demand[i] <= alcohol + r)
+                if ((demand[i] >= alcohol - 40 - r) && demand[i] <= alcohol - 40 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 3)
             {
-                if ((demand[i] >= temperature - r) && demand[i] <= temperature + r)
+                if ((demand[i] >= temperature + 80 - r) && demand[i] <= temperature + 80 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 4)
             {
-                if ((demand[i] >= abnormal - r) && demand[i] <= abnormal + r)
+                if ((demand[i] >= abnormal - 150 - r) && demand[i] <= abnormal - 150 + r)
                 {
                     s += 1;
                 }
