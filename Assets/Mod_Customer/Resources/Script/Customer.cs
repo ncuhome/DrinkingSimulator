@@ -26,6 +26,7 @@ public class Customer : MonoBehaviour
     private string myorder;
     private string myevaluation;
     private TextMeshPro settext;
+    private bool startDrink;
 
     /// <summary>
     /// Éú³É¶©µ¥
@@ -50,7 +51,7 @@ public class Customer : MonoBehaviour
             {
                 int m = UnityEngine.Random.Range(0, k);
 
-                if(i == 0)
+                if (i == 0)
                 {
                     myo[i] = a;
                     demand[i] = -1;
@@ -149,7 +150,7 @@ public class Customer : MonoBehaviour
             myo += ",";
         }
 
-        if(type == 0)
+        if (type == 0)
         {
 
             myo += productlist[order[0]];
@@ -230,7 +231,7 @@ public class Customer : MonoBehaviour
 
         if (demand.Length < 3)
         {
-            if(s == demand.Length)
+            if (s == demand.Length)
             {
                 mye = 3;
             }
@@ -241,7 +242,7 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            if(s >= demand.Length - 1)
+            if (s >= demand.Length - 1)
             {
                 mye = 3;
             }
@@ -276,14 +277,44 @@ public class Customer : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         yield return new WaitForSeconds(10f);
-        
+
         isput = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject al = collision.gameObject;
+        // if (collision.tag != "Product") { return; }
+        // if (!startDrink) { return; }
+        // GameObject al = collision.gameObject;
 
+        // if (type == 0)
+        // {
+
+        //     if (al.GetComponent<Item>().Name == productlist[order[0]])
+        //     {
+        //         Debug.Log("a");
+        //         int e = StartEvaluate(al, 1);
+        //         StartCoroutine("PutText", GetEvaluation(e));
+        //         evaluate = e;
+        //     }
+        //     else
+        //     {
+        //         StartCoroutine("PutText", GetEvaluation(1));
+        //         evaluate = 1;
+        //     }
+        // }
+        // else
+        // {
+        //     int e = StartEvaluate(al, 0);
+        //     StartCoroutine("PutText", GetEvaluation(e));
+        //     evaluate = e;
+        // }
+
+    }
+
+    public void Drink(GameObject al)
+    {
+        startDrink = true;
         if (type == 0)
         {
 
@@ -293,13 +324,11 @@ public class Customer : MonoBehaviour
                 int e = StartEvaluate(al, 1);
                 StartCoroutine("PutText", GetEvaluation(e));
                 evaluate = e;
-                Destroy(al);
             }
             else
             {
                 StartCoroutine("PutText", GetEvaluation(1));
                 evaluate = 1;
-                Destroy(al);
             }
         }
         else
@@ -307,9 +336,7 @@ public class Customer : MonoBehaviour
             int e = StartEvaluate(al, 0);
             StartCoroutine("PutText", GetEvaluation(e));
             evaluate = e;
-            Destroy(al);
         }
-
 
     }
 
@@ -329,12 +356,12 @@ public class Customer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(evaluate == 0)
+        if (evaluate == 0)
         {
             isput = true;
         }
 
-        if(isput == false)
+        if (isput == false)
         {
             StopCoroutine("PutText");
         }

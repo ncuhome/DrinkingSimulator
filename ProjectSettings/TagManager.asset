@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Shaker
   - Item
+  - Liquid
+  - Product
+  - Customer
   layers:
   - Default
   - TransparentFX

@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 6012418287037055790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -313.0444, y: -307.827, z: 10}
-  m_LocalScale: {x: 21.74, y: 23.039999, z: 1}
+  m_LocalScale: {x: 21.74, y: 23.04, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2090968582}
@@ -218,6 +218,7 @@ MonoBehaviour:
   Abnormal: 0
   control: 0
   LiquidMaterial: 
+  State: 
 --- !u!114 &6242174402385499776
 MonoBehaviour:
   m_ObjectHideFlags: 0

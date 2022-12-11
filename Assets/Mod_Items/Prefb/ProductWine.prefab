@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6015977704870247690}
   m_Layer: 0
   m_Name: ProductWine
-  m_TagString: Item
+  m_TagString: Product
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,3 +231,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32979dbd2098e14792f9d9fb2dfd40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inProduct: 0
+  inCustomer: 0

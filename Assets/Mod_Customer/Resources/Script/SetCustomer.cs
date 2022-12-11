@@ -11,7 +11,7 @@ public class SetCustomer : MonoBehaviour
 
     //public ArrayList customerlist = new ArrayList();
     public Customer[] customerlist;
-    
+
     /// <summary>
     /// 生成一个顾客(1:人类\2：兽人\3：精灵)
     /// </summary>
@@ -47,8 +47,11 @@ public class SetCustomer : MonoBehaviour
         wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
         yield return new WaitForSeconds(4f);//5f
 
-        Destroy(customerlist[0].gameObject);
-        customerlist[0] = null;
+        if (customerlist[0] != null)
+        {
+            Destroy(customerlist[0].gameObject);
+            customerlist[0] = null;
+        }
         yield return new WaitForSeconds(0.5f);
 
         customerlist[0] = InitCutomer();
@@ -69,7 +72,7 @@ public class SetCustomer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(customerlist[0] != null)
+        if (customerlist[0] != null)
         {
             if (customerlist[0].evaluate != 0 && customerlist[0].isput == false)
             {

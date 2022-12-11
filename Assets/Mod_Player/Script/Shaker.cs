@@ -184,6 +184,7 @@ public class Shaker : MonoBehaviour
         productMode = true;
 
         GameObject product = Instantiate(productPre, transform.position, transform.rotation);
+        product.transform.position = new Vector3(product.transform.position.x, product.transform.position.y, -1);
         productItem = product.GetComponent<Item>();
         productOPC = product.GetComponent<ProductOPC>();
         foreach (ItemTemplate itm in formulaPanel.Items)

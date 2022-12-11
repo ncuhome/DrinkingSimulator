@@ -12,12 +12,14 @@ public class ProductOPC : MonoBehaviour
     /// </summary>
     private bool isDrag = false; //????????
     public bool inProduct = false;
+    public bool inCustomer = false;
+    private Customer customer;
 
     #region ??????
     public void OnMouseDown()
     {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        transform.localScale = new Vector2(21.74f, 23.04f);
+        transform.localScale = new Vector2(90.58f, 96f);
         offset = screenPos - Input.mousePosition;
         isDrag = true;
     }
@@ -40,9 +42,10 @@ public class ProductOPC : MonoBehaviour
     public void OnMouseUp()
     {
         if (Shaker.Instance.startPour) { return; }
-        if (true) // 递给顾客
+        if (inCustomer) // 递给顾客
         {
             Debug.Log("递给顾客");
+            customer.Drink(this.gameObject);
             Shaker.Instance.productMode = false;
             Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
@@ -69,6 +72,11 @@ public class ProductOPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == "Customer")
+        {
+            inCustomer = true;
+            customer = other.GetComponent<Customer>();
+        }
         if (other.transform.tag == "Liquid")
         {
             Destroy(other.gameObject);
@@ -76,6 +84,9 @@ public class ProductOPC : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-
+        if (other.tag == "Customer")
+        {
+            inCustomer = false;
+        }
     }
 }
