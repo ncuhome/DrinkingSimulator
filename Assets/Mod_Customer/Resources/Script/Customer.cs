@@ -6,13 +6,15 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using TMPro;
 using System.Runtime.CompilerServices;
+using UnityEngine.Windows;
 
 public class Customer : MonoBehaviour
 {
-    private int evaluate;//评价(0:未评价\1:不符合\2:低分\3:高分)
+    public int evaluate;//评价(0:未评价\1:不符合\2:低分\3:高分)
     public int[] order;//点单表
     public int[] demand;
     public int type;//顾客类型(0:具体\1:宽泛)
+    public bool isput = true;
 
     private TextAsset products;//成品酒单
     private string[] productlist;
@@ -40,21 +42,28 @@ public class Customer : MonoBehaviour
             int n = UnityEngine.Random.Range(1, maxorder + 1);
             int a = UnityEngine.Random.Range(0, maxal);
             myo = new int[n];
-            myo[0] = a;
 
             int k = maxtype;
-            demand = new int[n - 1];
+            demand = new int[n];
 
-            for (int i = 0; i < n - 1; i++)
+            for (int i = 0; i < n; i++)
             {
                 int m = UnityEngine.Random.Range(0, k);
 
-                myo[i] = (int)x[m];
-                x.Remove(x[m]);
-                k--;
+                if(i == 0)
+                {
+                    myo[i] = a;
+                    demand[i] = -1;
+                }
+                else
+                {
+                    myo[i] = (int)x[m];
+                    x.Remove(x[m]);
+                    k--;
 
-                int d = UnityEngine.Random.Range(0, 101);
-                demand[i] = d;
+                    int d = UnityEngine.Random.Range(0, 101);
+                    demand[i] = d;
+                }
 
             }
 
@@ -87,6 +96,32 @@ public class Customer : MonoBehaviour
         }
     }
 
+    public void GetProducts()
+    {
+        products = Resources.Load("Script/Product") as TextAsset;
+        productlist = products.text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+        for (int i = 0; i < productlist.Length; i++)
+        {
+            productlist[i] = productlist[i].Substring(0, productlist[i].Length - 1);
+        }
+    }
+
+    public string GetEvaluation(int e)
+    {
+        string mye;
+
+        TextAsset evaluations = Resources.Load("Script/Evaluation") as TextAsset;
+        string[] tmplist = evaluations.text.Split('\n');
+        string[] evaluationlist = tmplist[e - 1].Split('-');
+
+        int n = UnityEngine.Random.Range(0, evaluationlist.Length + 1);
+
+        mye = evaluationlist[n];
+
+        return mye;
+    }
+
     public string GetOrder()
     {
         string myo = "请给我来一杯";
@@ -98,25 +133,16 @@ public class Customer : MonoBehaviour
         {
             myo += xs[order[i]];
 
-            int k;
-            if(type == 0)
-            {
-                k = i - 1;
-            }
-            else
-            {
-                k = 1;
-            }
 
-            if (demand[k] <= min)
+            if (demand[i] <= min)
             {
                 myo += "低的";
             }
-            else if (demand[k] <= mid)
+            else if (demand[i] <= mid)
             {
                 myo += "适中的";
             }
-            else if (demand[k] <= max)
+            else if (demand[i] <= max)
             {
                 myo += "高的";
             }
@@ -150,9 +176,10 @@ public class Customer : MonoBehaviour
         return myo;
     }
 
-    public int StartEvaluate(GameObject al)
+    public int StartEvaluate(GameObject al, int n)
     {
         int mye = 0;
+        int r = 20;
 
         int sweet = al.GetComponent<Item>().Sweet;
         int acid = al.GetComponent<Item>().Acid;
@@ -162,46 +189,44 @@ public class Customer : MonoBehaviour
 
         int s = 0;
 
-        for (int i = 0; i < demand.Length; i++)
+        for (int i = n; i < demand.Length; i++)
         {
             if (order[i] == 0)
             {
-                if ((demand[i] >= sweet - 10) && demand[i] <= sweet + 10)
+                if ((demand[i] >= sweet - 30 - r) && demand[i] <= sweet - 30 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 1)
             {
-                if ((demand[i] >= acid - 10) && demand[i] <= acid + 10)
+                if ((demand[i] >= acid + 20 - r) && demand[i] <= acid + 20 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 2)
             {
-                if ((demand[i] >= alcohol - 10) && demand[i] <= alcohol + 10)
+                if ((demand[i] >= alcohol - 40 - r) && demand[i] <= alcohol - 40 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 3)
             {
-                if ((demand[i] >= temperature - 10) && demand[i] <= temperature + 10)
+                if ((demand[i] >= temperature + 80 - r) && demand[i] <= temperature + 80 + r)
                 {
                     s += 1;
                 }
             }
             else if (order[i] == 4)
             {
-                if ((demand[i] >= abnormal - 10) && demand[i] <= abnormal + 10)
+                if ((demand[i] >= abnormal - 150 - r) && demand[i] <= abnormal - 150 + r)
                 {
                     s += 1;
                 }
             }
         }
-
-        Debug.Log("s:"+s);
 
         if (demand.Length < 3)
         {
@@ -232,42 +257,58 @@ public class Customer : MonoBehaviour
 
     IEnumerator PutText(string text)
     {
+        isput = true;
+        if (text[0] != '请')
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                string word = "······".Substring((0), j);
+                settext.text = word;
+                yield return new WaitForSeconds(0.15f);
+            }
+        }
+        yield return new WaitForSeconds(1f);
+
         for (int j = 0; j < text.Length; j++)
         {
             string word = text.Substring((0), j);
             settext.text = word;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
         }
-        yield return new WaitForSeconds(0.4f);
-
+        yield return new WaitForSeconds(10f);
+        
+        isput = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject al = collision.gameObject;
-        if(type == 0)
+
+        if (type == 0)
         {
 
-            if (productlist[order[0]] == al.GetComponent<Item>().Name)
+            if (al.GetComponent<Item>().Name == productlist[order[0]])
             {
-                evaluate = StartEvaluate(al);
-                //Destroy(al);
+                Debug.Log("a");
+                int e = StartEvaluate(al, 1);
+                StartCoroutine("PutText", GetEvaluation(e));
+                evaluate = e;
+                Destroy(al);
             }
             else
             {
+                StartCoroutine("PutText", GetEvaluation(1));
                 evaluate = 1;
-                //Destroy(al);
+                Destroy(al);
             }
         }
         else
         {
-            evaluate = StartEvaluate(al);
-            //Destroy(al);
+            int e = StartEvaluate(al, 0);
+            StartCoroutine("PutText", GetEvaluation(e));
+            evaluate = e;
+            Destroy(al);
         }
-
-        //Debug.Log(evaluate);
-        //Debug.Log(al.GetComponent<Item>().Name);
-        //Debug.Log(productlist[order[0]]);
 
 
     }
@@ -275,8 +316,7 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        products = Resources.Load("Script/Product") as TextAsset;
-        productlist = products.text.Split('\n');
+        GetProducts();
 
         settext = transform.Find("OrderText").gameObject.GetComponent<TextMeshPro>();
 
@@ -289,6 +329,14 @@ public class Customer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(evaluate == 0)
+        {
+            isput = true;
+        }
+
+        if(isput == false)
+        {
+            StopCoroutine("PutText");
+        }
     }
 }
