@@ -118,9 +118,16 @@ public class Customer : MonoBehaviour
 
         int n = UnityEngine.Random.Range(0, evaluationlist.Length + 1);
 
-        mye = evaluationlist[n];
-
-        return mye;
+        if(n < evaluationlist.Length)
+        {
+            mye = evaluationlist[n];
+            return mye;
+        }
+        else
+        {
+            mye = evaluationlist[n - 1];
+            return mye;
+        }
     }
 
     public string GetOrder()
@@ -276,7 +283,7 @@ public class Customer : MonoBehaviour
             settext.text = word;
             yield return new WaitForSeconds(0.15f);
         }
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(7f);
 
         isput = false;
     }

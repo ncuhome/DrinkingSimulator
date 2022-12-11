@@ -20,15 +20,15 @@ public class Twinkle : MonoBehaviour
         time1 += Time.deltaTime;
         if(time1 < 2)
         {
-            float now = arrow.GetComponent<Light2D>().intensity;
-            float n = Mathf.Lerp(now, 0f, 4f * Time.deltaTime);
-            arrow.GetComponent<Light2D>().intensity = n;
+            var now = arrow.GetComponent<SpriteRenderer>().color;
+            float n = Mathf.Lerp(now.r, 0.5f, 0.7f * Time.deltaTime);
+            arrow.GetComponent<SpriteRenderer>().color = new Color(n, n, n, 1);
         }
         else
         {
-            float now = arrow.GetComponent<Light2D>().intensity;
-            float n = Mathf.Lerp(now, 8f, 4f * Time.deltaTime);
-            arrow.GetComponent<Light2D>().intensity = n;
+            var now = arrow.GetComponent<SpriteRenderer>().color;
+            float n = Mathf.Lerp(now.r, 1f, 0.7f * Time.deltaTime);
+            arrow.GetComponent<SpriteRenderer>().color = new Color(n, n, n, 1);
         }
 
         if(time1 >= 4)
@@ -41,10 +41,10 @@ public class Twinkle : MonoBehaviour
         time2 += Time.deltaTime;
         if (Mathf.Abs(time2 - 4) < 0.3f)
         {
-            int n = UnityEngine.Random.Range(1, 11);
-            int m = UnityEngine.Random.Range(1, 8);
-            beer.GetComponent<Light2D>().intensity = n;
-            letter.GetComponent<Light2D>().intensity = m;
+            float n = UnityEngine.Random.Range(0f, 0.5f);
+            float m = UnityEngine.Random.Range(0f, 1f);
+            beer.GetComponent<SpriteRenderer>().color = new Color(n, n, n, 1);
+            letter.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, m);
         }
         if (time2 >= 8)
         {
@@ -55,43 +55,43 @@ public class Twinkle : MonoBehaviour
     public void TopLight()
     {
         time3 += Time.deltaTime;
-        if (time3 < 1)
+        if (time3 < 2)
         {
-            var now = toplight.GetComponent<Light2D>().color;
+            var now = toplight.GetComponent<Light>().color;
             float n = Mathf.Lerp(now.g, 1f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(now.r, n, now.b, now.a);
+            toplight.GetComponent<Light>().color = new Color(now.r, n, now.b, now.a);
         }
-        else if(time3 < 2)
+        else if(time3 < 4)
         {
-            var now = toplight.GetComponent<Light2D>().color;
-            float n = Mathf.Lerp(now.b, 1.5f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(now.r, now.g, n, now.a);
+            var now = toplight.GetComponent<Light>().color;
+            float n = Mathf.Lerp(now.b, 2f, 0.01f);
+            toplight.GetComponent<Light>().color = new Color(now.r, now.g, n, now.a);
         }
-        else if(time3 < 3)
+        else if(time3 < 6)
         {
-            var now = toplight.GetComponent<Light2D>().color;
+            var now = toplight.GetComponent<Light>().color;
             float n = Mathf.Lerp(now.r, 1f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(n, now.g, now.b, now.a);
+            toplight.GetComponent<Light>().color = new Color(n, now.g, now.b, now.a);
         }
-        else if (time3 < 4)
+        else if (time3 < 8)
         {
-            var now = toplight.GetComponent<Light2D>().color;
-            float n = Mathf.Lerp(now.g, 1.5f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(now.r, n, now.b, now.a);
+            var now = toplight.GetComponent<Light>().color;
+            float n = Mathf.Lerp(now.g, 2f, 0.01f);
+            toplight.GetComponent<Light>().color = new Color(now.r, n, now.b, now.a);
         }
-        else if (time3 < 5)
+        else if (time3 < 10)
         {
-            var now = toplight.GetComponent<Light2D>().color;
+            var now = toplight.GetComponent<Light>().color;
             float n = Mathf.Lerp(now.b, 1f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(now.r, now.g, n, now.a);
+            toplight.GetComponent<Light>().color = new Color(now.r, now.g, n, now.a);
         }
-        else if (time3 < 6)
+        else if (time3 < 12)
         {
-            var now = toplight.GetComponent<Light2D>().color;
-            float n = Mathf.Lerp(now.r, 1.5f, 0.01f);
-            toplight.GetComponent<Light2D>().color = new Color(n, now.g, now.b, now.a);
+            var now = toplight.GetComponent<Light>().color;
+            float n = Mathf.Lerp(now.r, 2f, 0.01f);
+            toplight.GetComponent<Light>().color = new Color(n, now.g, now.b, now.a);
         }
-        if(time3 > 6)
+        if(time3 > 12)
         {
             time3 = 0;
         }
@@ -106,6 +106,7 @@ public class Twinkle : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
         Alight();
