@@ -25,6 +25,8 @@ public class Shaker : MonoBehaviour
     private string[] wine = new string[6];
     private int wineIndex = 0;
     public CupLid cupLid;
+    public GameObject productPre;
+    public FormulaPanel formulaPanel;
 
     private void Awake()
     {
@@ -153,6 +155,12 @@ public class Shaker : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         cupLid.startMove = false;
+        InstantiateProduct();
+
+    }
+
+    private void InstantiateProduct()
+    {
         string targetWine = FormulaPanel.Make(wine);
         Debug.Log(wine[0] + " " + wine[1] + " " + wine[2] + " " + wine[3] + " " + wine[4] + " " + wine[5]);
         Debug.Log(targetWine);
@@ -162,6 +170,30 @@ public class Shaker : MonoBehaviour
             wine[i] = "Null";
         }
         wineIndex = 0;
+        
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        cupLid.GetComponent<SpriteRenderer>().enabled = false;
+        cupLid.GetComponent<BoxCollider2D>().enabled = false;
+
+        GameObject product = Instantiate(productPre, transform.position, transform.rotation);
+        Item productItem = product.GetComponent<Item>();
+        foreach (ItemTemplate itm in formulaPanel.Items)
+        {
+            if (targetWine == itm.Name)
+            {
+                productItem.SetData(itm);
+                if (productItem.FileName != " ")
+                {
+                    product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + productItem.FileName);
+                }
+                else
+                {
+                    product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + "RUM_test");
+                }
+                break;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

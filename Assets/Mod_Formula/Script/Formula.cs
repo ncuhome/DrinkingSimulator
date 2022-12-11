@@ -37,9 +37,14 @@ class Formula
         {
             bool mk = false;
             if (m == "Null") { continue; }
-            foreach(string n in materials)
+            for (int i = 0; i < materials.Length; i++)
             {
-                if (n == m) { mk = true; }
+                if (materials[i] == m)
+                {
+                    mk = true;
+                    materials[i] = "Null";
+                    break;
+                }
             }
             if (!mk) { return false; }
         }

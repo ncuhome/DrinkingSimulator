@@ -91,7 +91,6 @@ public class ItemOPC : MonoBehaviour
         startPour = true;
         Shaker.Instance.wineOPC = this;
         transform.position = Shaker.Instance.pourPos;
-        Shaker.Instance.meshRenderer.material = liquidMaterial;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
     }
