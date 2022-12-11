@@ -19,7 +19,7 @@ public class ProductOPC : MonoBehaviour
     public void OnMouseDown()
     {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        transform.localScale = new Vector2(90.58f, 96f);
+        transform.localScale = new Vector2(21.74f, 23.04f);
         offset = screenPos - Input.mousePosition;
         isDrag = true;
     }
