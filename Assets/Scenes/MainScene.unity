@@ -3162,6 +3162,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2238248693446216739, guid: 9ae8d2ffca6fd2f4a9ca06044b964112, type: 3}
+      propertyPath: blurSpread
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238248693446216739, guid: 9ae8d2ffca6fd2f4a9ca06044b964112, type: 3}
+      propertyPath: iterations
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2238248693446216767, guid: 9ae8d2ffca6fd2f4a9ca06044b964112, type: 3}
       propertyPath: m_Name
       value: Liquid Effect Camera
