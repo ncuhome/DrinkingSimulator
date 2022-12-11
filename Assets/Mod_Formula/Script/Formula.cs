@@ -5,6 +5,7 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
+using System;
 
 class Formula
 {
@@ -56,18 +57,15 @@ class Formula
     public string[] getMaterials(string[] materials)
     {
         List<string> list = new List<string>();
-        foreach(string m in materials)
+        foreach (string m in materials)
         {
             if (m == "Null") { continue; }
             list.Add(m);
         }
-        foreach(string m in Materials)
+
+        foreach (string m in Materials)
         {
-            foreach(string k in materials)
-            {
-                list.Remove(k);
-                break;
-            }
+            list.Remove(m);
         }
         return list.ToArray();
     }
