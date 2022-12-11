@@ -92,6 +92,7 @@ public class FormulaPanel : MonoBehaviour
             Destroy(g);
         }
         Posts.Clear();
+        int ddx = 700;//修正值
         int ux = 0, uy = 0;
         for (int i = 0; i < formulas.Length; i++)
         {
@@ -103,7 +104,7 @@ public class FormulaPanel : MonoBehaviour
 
             RectTransform rt = obj.GetComponent<RectTransform>();
             ux = 0;
-            uy = -250 - 250 * i;
+            uy = ddx - 180 * i;
             rt.SetParent(Container.transform);
             rt.localPosition = new Vector2(ux, uy);
 
@@ -139,7 +140,7 @@ public class FormulaPanel : MonoBehaviour
             }
 
         }
-        Container.GetComponent<RectTransform>().offsetMin = new Vector2(0, uy - 200);
+        Container.GetComponent<RectTransform>().offsetMin = new Vector2(0, uy - ddx - 300);
     }
 
     /// <summary>

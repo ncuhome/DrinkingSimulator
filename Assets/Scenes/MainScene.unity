@@ -841,7 +841,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -173665393, guid: 272c7888c2cf95945b3131ac4b463adf, type: 3}
-  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_Color: {r: 0.6037736, g: 0.33834103, b: 0.54654557, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -925,7 +925,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -173665393, guid: 272c7888c2cf95945b3131ac4b463adf, type: 3}
-  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_Color: {r: 0.6037736, g: 0.33834103, b: 0.54654557, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1155,8 +1155,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6514345728599944663, guid: 69b7e2483eca7714aaf17675e3412a18, type: 2}
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 512
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6343427720691599468, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1726,6 +1734,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 902027089}
     m_Modifications:
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_text
+      value: test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 69b7e2483eca7714aaf17675e3412a18, type: 2}
@@ -1734,8 +1750,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6514345728599944663, guid: 69b7e2483eca7714aaf17675e3412a18, type: 2}
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 512
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6343427720691599468, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2323,8 +2347,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6514345728599944663, guid: 69b7e2483eca7714aaf17675e3412a18, type: 2}
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 512
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6343427720691599468, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_AnchorMax.x
