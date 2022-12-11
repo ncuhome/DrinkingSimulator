@@ -128,11 +128,21 @@ public class FormulaPanel : MonoBehaviour
                 image = obj.transform.Find("Material" + (k + 1)).GetComponent<Image>();
 
                 spriteName = " ";
-                foreach (ItemTemplate itm in Items)
+                foreach (ItemTemplate itm in mitem1.Items)
                 {
                     if (formulas[i].Materials[k] == itm.Name)
                     {
                         spriteName = itm.FileName; break;
+                    }
+                }
+                if(spriteName == " ")
+                {
+                    foreach (ItemTemplate itm in mitem2.Items)
+                    {
+                        if (formulas[i].Materials[k] == itm.Name)
+                        {
+                            spriteName = itm.FileName; break;
+                        }
                     }
                 }
                 if (spriteName != " ") { image.sprite = Resources.Load<Sprite>("Mod_Items/" + spriteName); }
