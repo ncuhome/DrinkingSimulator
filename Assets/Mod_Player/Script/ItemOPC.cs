@@ -34,7 +34,7 @@ public class ItemOPC : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if (Shaker.Instance.startPour) return;
+        if (!Shaker.Instance.canAddWine) return;
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 
@@ -54,7 +54,7 @@ public class ItemOPC : MonoBehaviour
         {
             if ((!Shaker.Instance.startPour))
             {
-                if (Shaker.Instance.CanAddWine())
+                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode)||(Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
                 {
                     if (GetComponent<Item>().State == "Liquid")
                     {
@@ -90,6 +90,7 @@ public class ItemOPC : MonoBehaviour
     {
         startPour = true;
         Shaker.Instance.wineOPC = this;
+        Shaker.Instance.canAddWine = false;
         transform.position = Shaker.Instance.pourPos;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
@@ -99,7 +100,14 @@ public class ItemOPC : MonoBehaviour
     {
         Shaker.Instance.meshRenderer.material = liquidMaterial;
         Shaker.Instance.InstantiateLiquid();
-        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
     }
@@ -121,13 +129,21 @@ public class ItemOPC : MonoBehaviour
             Item.GetComponent<SpriteRenderer>().enabled = true;
         }
         Shaker.Instance.inShaker = false;
+        Shaker.Instance.canAddWine = true;
         Destroy(this.gameObject);
     }
 
     private void AddSolid()
     {
         Shaker.Instance.StartPour();
-        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
         if (Item != null)
         {
             Item.GetComponent<BoxCollider2D>().enabled = true;

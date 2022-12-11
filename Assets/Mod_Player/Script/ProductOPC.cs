@@ -11,6 +11,7 @@ public class ProductOPC : MonoBehaviour
     /// ????????????????????
     /// </summary>
     private bool isDrag = false; //????????
+    public bool inProduct = false;
 
     #region ??????
     public void OnMouseDown()
@@ -38,9 +39,11 @@ public class ProductOPC : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (Shaker.Instance.startPour) { return; }
         if (true) // 递给顾客
         {
             Debug.Log("递给顾客");
+            Shaker.Instance.productMode = false;
             Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<SpriteRenderer>().enabled = true;
@@ -63,4 +66,16 @@ public class ProductOPC : MonoBehaviour
 
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Liquid")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+    }
 }

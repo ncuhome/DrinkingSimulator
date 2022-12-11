@@ -69,6 +69,7 @@ class Formula
         }
         return list.ToArray();
     }
+
 }
 
 class FormulaT
