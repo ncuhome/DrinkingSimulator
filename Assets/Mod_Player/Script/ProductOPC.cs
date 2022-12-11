@@ -39,6 +39,7 @@ public class ProductOPC : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (Shaker.Instance.startPour) { return; }
         if (true) // 递给顾客
         {
             Debug.Log("递给顾客");
@@ -68,16 +69,13 @@ public class ProductOPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag == "Item")
+        if (other.transform.tag == "Liquid")
         {
-            inProduct = true;
+            Destroy(other.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.transform.tag == "Item")
-        {
-            inProduct = false;
-        }
+
     }
 }

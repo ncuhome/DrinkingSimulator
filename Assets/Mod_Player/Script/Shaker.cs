@@ -31,6 +31,7 @@ public class Shaker : MonoBehaviour
     public int seasoningIndex = 0;
     public bool productMode = false;
     private Item productItem;
+    public bool canAddWine = true;
 
     private void Awake()
     {
@@ -203,17 +204,6 @@ public class Shaker : MonoBehaviour
         }
     }
 
-    public bool inProduct()
-    {
-        if (productOPC != null)
-        {
-            return productOPC.inProduct;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public void AddSeasoning(Item itm)
     {

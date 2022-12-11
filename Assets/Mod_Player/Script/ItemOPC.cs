@@ -34,7 +34,7 @@ public class ItemOPC : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if (Shaker.Instance.startPour) return;
+        if (!Shaker.Instance.canAddWine) return;
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 
@@ -54,29 +54,7 @@ public class ItemOPC : MonoBehaviour
         {
             if ((!Shaker.Instance.startPour))
             {
-                if (Shaker.Instance.CanAddWine())
-                {
-                    if (GetComponent<Item>().State == "Liquid")
-                    {
-                        StartPour();
-                    }
-                    if (GetComponent<Item>().State == "Solid")
-                    {
-                        AddSolid();
-                    }
-                }
-                else
-                {
-                    //提示装满了
-                    Debug.Log("装满了");
-                }
-            }
-        }
-        else if (Shaker.Instance.inProduct())
-        {
-            if ((!Shaker.Instance.startPour))
-            {
-                if (Shaker.Instance.seasoningIndex < 5)
+                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode)||(Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
                 {
                     if (GetComponent<Item>().State == "Liquid")
                     {
@@ -112,6 +90,7 @@ public class ItemOPC : MonoBehaviour
     {
         startPour = true;
         Shaker.Instance.wineOPC = this;
+        Shaker.Instance.canAddWine = false;
         transform.position = Shaker.Instance.pourPos;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
@@ -150,6 +129,7 @@ public class ItemOPC : MonoBehaviour
             Item.GetComponent<SpriteRenderer>().enabled = true;
         }
         Shaker.Instance.inShaker = false;
+        Shaker.Instance.canAddWine = true;
         Destroy(this.gameObject);
     }
 
