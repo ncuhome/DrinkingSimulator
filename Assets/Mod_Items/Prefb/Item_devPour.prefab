@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7928186278644790028}
   - component: {fileID: 8040731572831774654}
   - component: {fileID: 6242174402385499776}
+  - component: {fileID: 29984934529512005}
   m_Layer: 0
   m_Name: Item_devPour
   m_TagString: Item
@@ -233,3 +234,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DescriptionPanel: {fileID: 0}
   item: {fileID: 8040731572831774654}
+--- !u!114 &29984934529512005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012418287037055790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f5a9d68887e2b46818c869d06f3fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 803c30bbf2ab8ed4f8b15f25cc39ea36, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
