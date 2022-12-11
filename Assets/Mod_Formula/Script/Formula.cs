@@ -37,9 +37,13 @@ class Formula
         {
             bool mk = false;
             if (m == "Null") { continue; }
-            foreach(string n in materials)
+            for(int i=0;i<materials.Length;i++)
             {
-                if (n == m) { mk = true; }
+                if (materials[i] == m)
+                {
+                    mk = true;
+                    break;
+                }
             }
             if (!mk) { return false; }
         }
@@ -52,15 +56,17 @@ class Formula
     public string[] getMaterials(string[] materials)
     {
         List<string> list = new List<string>();
-        foreach (string m in materials)
+        foreach(string m in materials)
         {
-            bool mk = false;
-            if (m == "Null") { continue; }
-            foreach (string n in Materials)
+            list.Add(m);
+        }
+        foreach(string m in Materials)
+        {
+            foreach(string k in materials)
             {
-                if (n == m) { mk = true; }
+                list.Remove(k);
+                break;
             }
-            if (!mk) { list.Add(m); }
         }
         return list.ToArray();
     }
