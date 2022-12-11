@@ -258,16 +258,26 @@ public class Customer : MonoBehaviour
     IEnumerator PutText(string text)
     {
         isput = true;
+        if (text[0] != '萩')
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                string word = "，，，，，，".Substring((0), j);
+                settext.text = word;
+                yield return new WaitForSeconds(0.15f);
+            }
+        }
+        yield return new WaitForSeconds(1f);
+
         for (int j = 0; j < text.Length; j++)
         {
             string word = text.Substring((0), j);
             settext.text = word;
             yield return new WaitForSeconds(0.15f);
         }
-        yield return new WaitForSeconds(5f);
-
+        yield return new WaitForSeconds(10f);
+        
         isput = false;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

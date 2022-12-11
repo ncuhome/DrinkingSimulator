@@ -110,8 +110,6 @@ public class Twinkle : MonoBehaviour
     {
         Alight();
         Blight();
-        //TopLight();
-        //Debug.Log(time2);
         TopLight();
     }
 }
