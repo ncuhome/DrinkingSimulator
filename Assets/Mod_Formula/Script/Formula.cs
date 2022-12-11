@@ -42,7 +42,6 @@ class Formula
                 if (materials[i] == m)
                 {
                     mk = true;
-                    materials[i] = "Null";
                     break;
                 }
             }
@@ -59,16 +58,20 @@ class Formula
         List<string> list = new List<string>();
         foreach (string m in materials)
         {
-            bool mk = false;
             if (m == "Null") { continue; }
-            foreach (string n in Materials)
+            list.Add(m);
+        }
+        foreach (string m in Materials)
+        {
+            foreach (string k in materials)
             {
-                if (n == m) { mk = true; }
+                list.Remove(k);
+                break;
             }
-            if (!mk) { list.Add(m); }
         }
         return list.ToArray();
     }
+
 }
 
 class FormulaT

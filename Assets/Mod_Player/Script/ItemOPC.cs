@@ -72,6 +72,28 @@ public class ItemOPC : MonoBehaviour
                 }
             }
         }
+        else if (Shaker.Instance.inProduct())
+        {
+            if ((!Shaker.Instance.startPour))
+            {
+                if (Shaker.Instance.seasoningIndex < 5)
+                {
+                    if (GetComponent<Item>().State == "Liquid")
+                    {
+                        StartPour();
+                    }
+                    if (GetComponent<Item>().State == "Solid")
+                    {
+                        AddSolid();
+                    }
+                }
+                else
+                {
+                    //提示装满了
+                    Debug.Log("装满了");
+                }
+            }
+        }
         else
         {
             if (Item != null)
@@ -99,7 +121,14 @@ public class ItemOPC : MonoBehaviour
     {
         Shaker.Instance.meshRenderer.material = liquidMaterial;
         Shaker.Instance.InstantiateLiquid();
-        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
     }
@@ -127,7 +156,14 @@ public class ItemOPC : MonoBehaviour
     private void AddSolid()
     {
         Shaker.Instance.StartPour();
-        Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
         if (Item != null)
         {
             Item.GetComponent<BoxCollider2D>().enabled = true;

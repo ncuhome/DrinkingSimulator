@@ -27,6 +27,10 @@ public class Shaker : MonoBehaviour
     public CupLid cupLid;
     public GameObject productPre;
     public FormulaPanel formulaPanel;
+    public ProductOPC productOPC;
+    public int seasoningIndex = 0;
+    public bool productMode = false;
+    private Item productItem;
 
     private void Awake()
     {
@@ -170,14 +174,17 @@ public class Shaker : MonoBehaviour
             wine[i] = "Null";
         }
         wineIndex = 0;
-        
+        seasoningIndex = 0;
+
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         cupLid.GetComponent<SpriteRenderer>().enabled = false;
         cupLid.GetComponent<BoxCollider2D>().enabled = false;
+        productMode = true;
 
         GameObject product = Instantiate(productPre, transform.position, transform.rotation);
-        Item productItem = product.GetComponent<Item>();
+        productItem = product.GetComponent<Item>();
+        productOPC = product.GetComponent<ProductOPC>();
         foreach (ItemTemplate itm in formulaPanel.Items)
         {
             if (targetWine == itm.Name)
@@ -194,6 +201,28 @@ public class Shaker : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public bool inProduct()
+    {
+        if (productOPC != null)
+        {
+            return productOPC.inProduct;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void AddSeasoning(Item itm)
+    {
+        seasoningIndex++;
+        productItem.Sweet += itm.Sweet;
+        productItem.Acid += itm.Acid;
+        productItem.Alcohol += itm.Alcohol;
+        productItem.Temperature += itm.Temperature;
+        productItem.Abnormal += itm.Abnormal;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
