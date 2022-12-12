@@ -67,8 +67,8 @@ public class ItemOPC : MonoBehaviour
                 }
                 else
                 {
-                    //提示装满了
-                    Debug.Log("装满了");
+                    //?????
+                    Debug.Log("???");
                 }
             }
         }
