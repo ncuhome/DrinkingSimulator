@@ -283,7 +283,7 @@ public class Customer : MonoBehaviour
             settext.text = word;
             yield return new WaitForSeconds(0.15f);
         }
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(5f);
 
         isput = false;
     }

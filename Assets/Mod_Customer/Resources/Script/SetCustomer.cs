@@ -54,7 +54,11 @@ public class SetCustomer : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
 
-        customerlist[0] = InitCutomer();
+        if (customerlist[0] == null)
+        {
+            customerlist[0] = InitCutomer();
+        }
+
 
 
     }
