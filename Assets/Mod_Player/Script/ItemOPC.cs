@@ -50,6 +50,7 @@ public class ItemOPC : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (startPour) { return; }
         if (Shaker.Instance.inShaker) // ???????????????????
         {
             if ((!Shaker.Instance.startPour))
@@ -68,7 +69,7 @@ public class ItemOPC : MonoBehaviour
                 else
                 {
                     //?????
-                    Debug.Log("???"); 
+                    Debug.Log("???");
                     if (Item != null)
                     {
                         Item.GetComponent<BoxCollider2D>().enabled = true;
@@ -116,6 +117,13 @@ public class ItemOPC : MonoBehaviour
         }
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
+        StartCoroutine(StartPlayAudio());
+    }
+
+    private IEnumerator StartPlayAudio()
+    {
+        yield return new WaitForSeconds(1f);
+        MediaPlayer.Instance.MediaPlay(Media.Poor_Fast);
     }
     /// <summary>
     /// ?????
