@@ -46,6 +46,7 @@ public class ProductOPC : MonoBehaviour
         {
             Debug.Log("递给顾客");
             customer.Drink(this.gameObject);
+            Shaker.Instance.canAddWine = false;
             Shaker.Instance.productMode = false;
             Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
