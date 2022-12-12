@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3242ebe9cb193b4e92fc37555522215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 803c30bbf2ab8ed4f8b15f25cc39ea36, type: 3}
+  onDragTexture: {fileID: 2800000, guid: 910b0da219424744da9cddafd5f10ca2, type: 3}
+  onEnterTexture: {fileID: 2800000, guid: 93ba71884d418074e85fc325ba162f79, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!212 &1009909125
@@ -432,7 +433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3242ebe9cb193b4e92fc37555522215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 36eda7edd3021884b9493183c87e0c5f, type: 3}
+  onDragTexture: {fileID: 2800000, guid: 910b0da219424744da9cddafd5f10ca2, type: 3}
+  onEnterTexture: {fileID: 2800000, guid: 93ba71884d418074e85fc325ba162f79, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!58 &1672204705
