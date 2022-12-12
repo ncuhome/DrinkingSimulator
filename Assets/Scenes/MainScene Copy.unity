@@ -228,7 +228,6 @@ MonoBehaviour:
   poor_Slow: {fileID: 8300000, guid: 5313488800057424eae02421296adf18, type: 3}
   drop: {fileID: 8300000, guid: dc7384b2671696f459af5e943996a4ce, type: 3}
   cheers: {fileID: 8300000, guid: d1eb4143239446e48a42bfa463a772cd, type: 3}
-  steps: {fileID: 8300000, guid: 500b230ac6dae5a4c94a9ceae14ea85b, type: 3}
   player: {fileID: 0}
 --- !u!4 &75738009
 Transform:
