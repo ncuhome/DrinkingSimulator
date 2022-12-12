@@ -193,12 +193,12 @@ public class FormulaPanel : MonoBehaviour
     private void Awake()
     {
         //更新成品表
-        string path = Application.dataPath + @"/Mod_Formula/DataSheet/" + dataPath + ".json";
+        string path = Application.dataPath + @"/Resources/DataSheet/" + dataPath + ".json";
         string txt = File.ReadAllText(path);
         Items = JsonConvert.DeserializeObject<List<ItemTemplate>>(txt);
 
         //更新配方表
-        string formulaFile = Application.dataPath + @"/Mod_Formula/DataSheet/" + formulaPath + ".json";
+        string formulaFile = Application.dataPath + @"/Resources/DataSheet/" + formulaPath + ".json";
         txt = File.ReadAllText(formulaFile);
         FormulaT[] formulasT = JsonConvert.DeserializeObject<FormulaT[]>(txt);
         formulas = new Formula[formulasT.Length];

@@ -27,6 +27,7 @@ public class ProductOPC : MonoBehaviour
 
     public void OnMouseDrag()
     {
+        if (Shaker.Instance.startPour) { return; }
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 

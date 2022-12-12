@@ -107,6 +107,8 @@ public class ItemOPC : MonoBehaviour
     {
         Shaker.Instance.meshRenderer.material = liquidMaterial;
         Shaker.Instance.InstantiateLiquid();
+        yield return new WaitForSeconds(0.4f);
+        Shaker.Instance.StartPour();
         if (!Shaker.Instance.productMode)
         {
             Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
@@ -115,8 +117,6 @@ public class ItemOPC : MonoBehaviour
         {
             Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
         }
-        yield return new WaitForSeconds(0.4f);
-        Shaker.Instance.StartPour();
         StartCoroutine(StartPlayAudio());
     }
 
