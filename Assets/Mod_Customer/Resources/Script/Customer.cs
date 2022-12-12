@@ -15,6 +15,7 @@ public class Customer : MonoBehaviour
     public int[] demand;
     public int type;//顾客类型(0:具体\1:宽泛)
     public bool isput = true;
+    public GameObject bubble;
 
     private TextAsset products;//成品酒单
     private string[] productlist;
@@ -271,6 +272,8 @@ public class Customer : MonoBehaviour
         isput = true;
         if (text[0] != '请')
         {
+            bubble.transform.position = new Vector3(14.4f, -0.9f, 0f);
+            bubble.transform.localScale = new Vector3(2.76f, 4f, 1f);
             for (int j = 0; j < 6; j++)
             {
                 string word = "······".Substring((0), j);
@@ -284,6 +287,9 @@ public class Customer : MonoBehaviour
         {
             string word = text.Substring((0), j);
             settext.text = word;
+            bubble.transform.localPosition = new Vector3(14.4f, (float)(-0.9f - ((int)(settext.text.Length / 8) * 1.2f)), 0f);
+            bubble.transform.localScale = new Vector3(2.76f, (float)(4f + ((int)(settext.text.Length / 8) * 1.2f)), 1f);
+
             yield return new WaitForSeconds(0.15f);
         }
         yield return new WaitForSeconds(5f);
@@ -356,6 +362,7 @@ public class Customer : MonoBehaviour
         GetProducts();
 
         settext = transform.Find("OrderText").gameObject.GetComponent<TextMeshPro>();
+        bubble = transform.Find("Bubble").gameObject;
 
         evaluate = 0;
         order = InitOrder();
