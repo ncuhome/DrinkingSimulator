@@ -134,7 +134,7 @@ public class Shaker : MonoBehaviour
     public void CloseLid()
     {
         cupLid.startMove = true;
-        cupLid.targetPos_y = 0.45f;
+        cupLid.targetPos_y = 0f;
         StartCoroutine(StartMix());
     }
 
@@ -194,7 +194,15 @@ public class Shaker : MonoBehaviour
                 productItem.SetData(itm);
                 if (productItem.FileName != " ")
                 {
-                    product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + productItem.FileName);
+                    if (productItem.FileName == "Fake wine")
+                    {
+                        string random = UnityEngine.Random.Range(1,4).ToString();
+                        product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/FakeWine/" + random);
+                    }
+                    else
+                    {
+                        product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/" + productItem.FileName);
+                    }
                 }
                 else
                 {
