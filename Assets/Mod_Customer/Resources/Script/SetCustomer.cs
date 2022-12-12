@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class SetCustomer : MonoBehaviour
@@ -46,8 +48,12 @@ public class SetCustomer : MonoBehaviour
         Vector4 now1 = wink.GetVector("_Param");
         float n = Mathf.Lerp(now1.y, 0f, 0.01f);
         wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
-        yield return new WaitForSeconds(4f);//5f
+        if(n - 0.1 < 0.01)
+        {
+            MediaPlayer.Instance.MediaPlay(Media.Steps);
 
+        }
+        yield return new WaitForSeconds(4f);
         if (customerlist[0] != null)
         {
             Destroy(customerlist[0].gameObject);
