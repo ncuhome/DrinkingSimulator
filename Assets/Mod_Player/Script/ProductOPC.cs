@@ -14,6 +14,7 @@ public class ProductOPC : MonoBehaviour
     public bool inProduct = false;
     public bool inCustomer = false;
     private Customer customer;
+    public bool inTrashBin = false;
 
     #region ??????
     public void OnMouseDown()
@@ -44,8 +45,18 @@ public class ProductOPC : MonoBehaviour
         if (Shaker.Instance.startPour) { return; }
         if (inCustomer) // 递给顾客
         {
-            Debug.Log("递给顾客");
+            //Debug.Log("递给顾客");
             customer.Drink(this.gameObject);
+            Shaker.Instance.canAddWine = false;
+            Shaker.Instance.productMode = false;
+            Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
+            Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
+            Shaker.Instance.cupLid.GetComponent<SpriteRenderer>().enabled = true;
+            Shaker.Instance.cupLid.GetComponent<BoxCollider2D>().enabled = true;
+            Destroy(this.gameObject);
+        }
+        if (inTrashBin)
+        {
             Shaker.Instance.productMode = false;
             Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
@@ -77,9 +88,21 @@ public class ProductOPC : MonoBehaviour
             inCustomer = true;
             customer = other.GetComponent<Customer>();
         }
+        if (other.tag == "TrashBin")
+        {
+            inTrashBin = true;
+        }
         if (other.transform.tag == "Liquid")
         {
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "TrashBin")
+        {
+            inTrashBin = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -87,6 +110,10 @@ public class ProductOPC : MonoBehaviour
         if (other.tag == "Customer")
         {
             inCustomer = false;
+        }
+        if (other.tag == "TrashBin")
+        {
+            inTrashBin = false;
         }
     }
 }
