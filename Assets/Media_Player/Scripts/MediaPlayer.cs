@@ -11,7 +11,8 @@ public enum Media
     Poor_Fast = 4,
     Poor_Slow = 5,
     Drop = 6,
-    Cheers = 7
+    Cheers = 7,
+    Steps = 7
 }
 
 public class MediaPlayer : MonoBehaviour
@@ -19,7 +20,7 @@ public class MediaPlayer : MonoBehaviour
     public static MediaPlayer Instance;
 
     //音频，以及将音频与枚举值相关联的字典
-    public AudioClip drink_Long, drink_Short, shake,poor_Fast,poor_Slow,drop,cheers;
+    public AudioClip drink_Long, drink_Short, shake,poor_Fast,poor_Slow,drop,cheers,steps;
 
     public Dictionary<Media, AudioClip> myMedias = new Dictionary<Media, AudioClip>();
 
@@ -51,6 +52,7 @@ public class MediaPlayer : MonoBehaviour
         myMedias.Add(Media.Poor_Slow, poor_Slow);
         myMedias.Add(Media.Drop, drop);
         myMedias.Add(Media.Cheers, cheers);
+        myMedias.Add(Media.Steps, steps);
     }
 
     public void MediaPlay(Media mediaName)
