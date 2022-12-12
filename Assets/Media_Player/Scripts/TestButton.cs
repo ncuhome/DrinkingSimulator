@@ -22,6 +22,6 @@ public class TestButton : MonoBehaviour
 
     public void OnClickLDButton()
     {
-        MediaPlayer.instance.MediaPlay(Media.Drink_Long);
+        MediaPlayer.Instance.MediaPlay(Media.Drink_Long);
     }
 }

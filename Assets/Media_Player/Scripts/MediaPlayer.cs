@@ -16,7 +16,7 @@ public enum Media
 
 public class MediaPlayer : MonoBehaviour
 {
-    public static MediaPlayer instance;
+    public static MediaPlayer Instance;
 
     //音频，以及将音频与枚举值相关联的字典
     public AudioClip drink_Long, drink_Short, shake,poor_Fast,poor_Slow,drop,cheers;
@@ -27,7 +27,7 @@ public class MediaPlayer : MonoBehaviour
 
     private void Awake()
     {
-        MediaPlayer.instance = this;
+        MediaPlayer.Instance = this;
     }
 
     // Start is called before the first frame update
