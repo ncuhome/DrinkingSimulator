@@ -12,7 +12,7 @@ public enum Media
     Poor_Slow = 5,
     Drop = 6,
     Cheers = 7,
-    Steps = 7
+    Steps = 8
 }
 
 public class MediaPlayer : MonoBehaviour
