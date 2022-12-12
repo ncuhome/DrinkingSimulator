@@ -21,6 +21,7 @@ public class SetCustomer : MonoBehaviour
         int n = UnityEngine.Random.Range(1, 4);
         int m = UnityEngine.Random.Range(1, 4);
         cus = Instantiate(Resources.Load("Prefb/Customer" + n.ToString())) as GameObject;
+        Shaker.Instance.canAddWine = true;
 
         if (n == 1)
         {

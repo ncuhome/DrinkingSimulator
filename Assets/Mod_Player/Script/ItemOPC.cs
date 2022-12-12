@@ -50,11 +50,12 @@ public class ItemOPC : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (startPour) { return; }
         if (Shaker.Instance.inShaker) // ???????????????????
         {
             if ((!Shaker.Instance.startPour))
             {
-                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode)||(Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
+                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode) || (Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
                 {
                     if (GetComponent<Item>().State == "Liquid")
                     {
@@ -69,6 +70,12 @@ public class ItemOPC : MonoBehaviour
                 {
                     //?????
                     Debug.Log("???");
+                    if (Item != null)
+                    {
+                        Item.GetComponent<BoxCollider2D>().enabled = true;
+                        Item.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    Destroy(this.gameObject);
                 }
             }
         }
@@ -110,6 +117,13 @@ public class ItemOPC : MonoBehaviour
         }
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
+        StartCoroutine(StartPlayAudio());
+    }
+
+    private IEnumerator StartPlayAudio()
+    {
+        yield return new WaitForSeconds(1f);
+        MediaPlayer.Instance.MediaPlay(Media.Poor_Fast);
     }
     /// <summary>
     /// ?????
@@ -144,6 +158,7 @@ public class ItemOPC : MonoBehaviour
         {
             Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
         }
+        MediaPlayer.Instance.MediaPlay(Media.Drop);
         if (Item != null)
         {
             Item.GetComponent<BoxCollider2D>().enabled = true;

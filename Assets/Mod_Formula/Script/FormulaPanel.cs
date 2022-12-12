@@ -92,19 +92,22 @@ public class FormulaPanel : MonoBehaviour
             Destroy(g);
         }
         Posts.Clear();
-        int ddx = 700;//修正值
+        Container.GetComponent<RectTransform>().offsetMax = new Vector2(1,  0);
+        Container.GetComponent<RectTransform>().offsetMin = new Vector2(0, -formulas.Length*200);
+        int ddx = -100;//修正值
         int ux = 0, uy = 0;
+
         for (int i = 0; i < formulas.Length; i++)
         {
             int p = i;
             GameObject obj = Instantiate(FormulaCellPerfb, Vector2.zero, Quaternion.identity);
             obj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => Select(p));
 
-            Posts.Add(obj);
+            Posts.Add(obj);                  
 
             RectTransform rt = obj.GetComponent<RectTransform>();
             ux = 0;
-            uy = ddx - 180 * i;
+            uy =  + ddx - 200*i;
             rt.SetParent(Container.transform);
             rt.localPosition = new Vector2(ux, uy);
 
@@ -150,7 +153,7 @@ public class FormulaPanel : MonoBehaviour
             }
 
         }
-        Container.GetComponent<RectTransform>().offsetMin = new Vector2(0, uy - ddx - 300);
+        
     }
 
     /// <summary>

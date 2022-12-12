@@ -121,7 +121,7 @@ public class ItemsPlane : MonoBehaviour
             double nt = Math.PI * pt / 180;
 
             float lx = -300 + 500 * (float)Math.Cos(nt);
-            float ly = 280 + 200 * (float)Math.Sin(nt);
+            float ly = 420 + 200 * (float)Math.Sin(nt);
             float lz = (float)nt - 100;
 
             float sx = 21.74f * (0.75f - (float)nt / 10);
@@ -134,7 +134,7 @@ public class ItemsPlane : MonoBehaviour
                 sy = 21.74f * (0.75f + (float)nt / 10);
                 nt = Math.PI * (pt+180) / 180;
                 lx = 1920 + 300 + 500 * (float)Math.Cos(nt);
-                ly = 280 + 200 * (float)Math.Sin(nt);
+                ly = 420 + 200 * (float)Math.Sin(nt);
             }
 
             item.transform.position = new Vector3(lx, ly, lz);
