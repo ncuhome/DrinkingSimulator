@@ -19,7 +19,7 @@ public class Customer : MonoBehaviour
     private TextAsset products;//成品酒单
     private string[] productlist;
     private ArrayList x = new ArrayList() { 0, 1, 2, 3, 4 }; //(甜酸酒温猎)
-    private string[] xs = { "甜度", "酸度", "度数", "温度", "猎奇度" };
+    private string[] xs = { "甜的", "酸的", "高度的", "温的", "猎奇的" };
     private int maxorder = 4;//最大点单数
     private int maxtype = 5;//最大可选择种类数
     private int maxal = 16;//最大可选择酒数
@@ -139,22 +139,24 @@ public class Customer : MonoBehaviour
 
         for (int i = order.Length - 1; i > 0; i--)
         {
-            myo += xs[order[i]];
+
 
 
             if (demand[i] <= min)
             {
-                myo += "低的";
+                myo += "不太";
             }
             else if (demand[i] <= mid)
             {
-                myo += "适中的";
+                myo += "比较";
             }
             else if (demand[i] <= max)
             {
-                myo += "高的";
+                myo += "很";
             }
-            myo += ",";
+            myo += xs[order[i]];
+
+            myo += " ";
         }
 
         if (type == 0)
@@ -164,19 +166,20 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            myo += xs[order[0]];
             if (demand[0] <= min)
             {
-                myo += "低的酒";
+                myo += "不太";
             }
             else if (demand[0] <= mid)
             {
-                myo += "适中的酒";
+                myo += "比较";
             }
             else if (demand[0] <= max)
             {
-                myo += "高的酒";
+                myo += "很";
             }
+            myo += xs[order[0]];
+            myo += "酒";
         }
 
         myo += "吧！";
