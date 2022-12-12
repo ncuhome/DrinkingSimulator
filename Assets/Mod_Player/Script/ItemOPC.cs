@@ -158,6 +158,7 @@ public class ItemOPC : MonoBehaviour
         {
             Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
         }
+        MediaPlayer.Instance.MediaPlay(Media.Drop);
         if (Item != null)
         {
             Item.GetComponent<BoxCollider2D>().enabled = true;

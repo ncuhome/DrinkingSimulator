@@ -49,6 +49,7 @@ public class ProductOPC : MonoBehaviour
             customer.Drink(this.gameObject);
             Shaker.Instance.canAddWine = false;
             Shaker.Instance.productMode = false;
+            MediaPlayer.Instance.MediaPlay(Media.Drink_Short);
             Shaker.Instance.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<SpriteRenderer>().enabled = true;

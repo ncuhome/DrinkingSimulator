@@ -141,6 +141,7 @@ public class Shaker : MonoBehaviour
     public IEnumerator StartMix()
     {
         yield return new WaitForSeconds(1.2f);
+        MediaPlayer.Instance.MediaPlay(Media.Shake);
         cupLid.startMove = false;
         startMix = true;
         targetEuler_z = 30f;
