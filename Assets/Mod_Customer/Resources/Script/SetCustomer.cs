@@ -46,8 +46,11 @@ public class SetCustomer : MonoBehaviour
         Vector4 now1 = wink.GetVector("_Param");
         float n = Mathf.Lerp(now1.y, 0f, 0.01f);
         wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
-        yield return new WaitForSeconds(4f);//5f
-
+        yield return new WaitForSeconds(5f);//5f
+        if(n - 0.1f < 0.01f)
+        {
+            MediaPlayer.Instance.MediaPlay(Media.Steps);
+        }
         if (customerlist[0] != null)
         {
             Destroy(customerlist[0].gameObject);

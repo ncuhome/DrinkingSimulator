@@ -519,7 +519,7 @@ MonoBehaviour:
   targetPos_y: 0
   curPos_y: 0
   startMove: 0
-  moveSpeed: 1
+  moveSpeed: 1.6
 --- !u!61 &362196057
 BoxCollider2D:
   m_ObjectHideFlags: 0

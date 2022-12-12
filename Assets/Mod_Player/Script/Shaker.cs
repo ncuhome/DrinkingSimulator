@@ -8,6 +8,7 @@ public class Shaker : MonoBehaviour
     public static Shaker Instance { get; private set; }
     public bool inShaker = false;
     public bool startPour = false;
+    public bool isShaking = false;
     public Vector3 pourPos;
     public Vector3 liquidPos;
     public GameObject LiquidPre = null;
@@ -161,6 +162,7 @@ public class Shaker : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         cupLid.startMove = false;
+        isShaking = false;
         InstantiateProduct();
 
     }
@@ -244,8 +246,10 @@ public class Shaker : MonoBehaviour
     public void OnMouseDown()
     {
         if (startPour) { return; }
+        if (isShaking) { return; }
         if (wineIndex >= 2)
         {
+            isShaking = true;
             CloseLid();
         }
         else
