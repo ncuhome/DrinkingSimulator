@@ -3131,7 +3131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_text
-      value: test
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6343427720632594620, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_fontSize
@@ -3168,6 +3168,14 @@ PrefabInstance:
     - target: {fileID: 6343427720691599468, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720941285019, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343427720941285019, guid: b3963244139301f45a7032964d4ec63d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 6343427721102012835, guid: b3963244139301f45a7032964d4ec63d, type: 3}
       propertyPath: m_AnchorMax.x
