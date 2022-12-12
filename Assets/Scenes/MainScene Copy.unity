@@ -228,6 +228,7 @@ MonoBehaviour:
   poor_Slow: {fileID: 8300000, guid: 5313488800057424eae02421296adf18, type: 3}
   drop: {fileID: 8300000, guid: dc7384b2671696f459af5e943996a4ce, type: 3}
   cheers: {fileID: 8300000, guid: d1eb4143239446e48a42bfa463a772cd, type: 3}
+  steps: {fileID: 8300000, guid: ce0df7302c76cec45bd8c2e14fedd11e, type: 3}
   player: {fileID: 0}
 --- !u!4 &75738009
 Transform:
@@ -372,7 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f5a9d68887e2b46818c869d06f3fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 803c30bbf2ab8ed4f8b15f25cc39ea36, type: 3}
+  onDragTexture: {fileID: 0}
+  onEnterTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!1 &249206481

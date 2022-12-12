@@ -44,7 +44,7 @@ public class SetCustomer : MonoBehaviour
     {
         Debug.Log("bbb");
         Vector4 now1 = wink.GetVector("_Param");
-        float n = Mathf.Lerp(now1.y, 0f, 0.01f);
+        float n = Mathf.Lerp(now1.y, 0f, 1.6f * Time.deltaTime);
         wink.SetVector("_Param", new Vector4(0.8f, n, 1f, 1f));
         yield return new WaitForSeconds(5f);//5f
         if(n - 0.1f < 0.01f)
