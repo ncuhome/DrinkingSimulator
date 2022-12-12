@@ -223,8 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drink_Long: {fileID: 8300000, guid: 628024751a26d694eaffe5e723ad4590, type: 3}
   drink_Short: {fileID: 8300000, guid: 758420c092668524f8fa8c9f73ee5279, type: 3}
-  shake: {fileID: 8300000, guid: 05d059c4bfc9d9a40b67942978167a6f, type: 3}
-  poor_Fast: {fileID: 8300000, guid: be10f71597dbe2c48b40458a878bfea5, type: 3}
+  shake: {fileID: 8300000, guid: 1f5527f85b92e814c8e6b9e8a8879c8e, type: 3}
+  poor_Fast: {fileID: 8300000, guid: 65e59ab7cbf4cc74aa2641c56cd7a873, type: 3}
   poor_Slow: {fileID: 8300000, guid: 5313488800057424eae02421296adf18, type: 3}
   drop: {fileID: 8300000, guid: dc7384b2671696f459af5e943996a4ce, type: 3}
   cheers: {fileID: 8300000, guid: d1eb4143239446e48a42bfa463a772cd, type: 3}
