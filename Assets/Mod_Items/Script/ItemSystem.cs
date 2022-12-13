@@ -92,13 +92,18 @@ public class ItemSystem : MonoBehaviour
     /// </summary>
     public void OpenClose()
     {
+        MeidiaPlay();
         PanelAnimator.SetTrigger("pressed");
-        if (openned) { openned = false; }
+        if (openned) { openned = false;  }
         else { openned = true;  }
     }
     #endregion
 
     #region 响应函数
+    private void MeidiaPlay()
+    {
+        GetComponent<AudioSource>().Play();
+    }
     /// <summary>
     /// 更新物品列表栏显示
     /// </summary>
@@ -119,7 +124,7 @@ public class ItemSystem : MonoBehaviour
             ux = -500 + 250 * (i % 5);
             uy = -200 - 250 * (i / 5);
             rt.SetParent(Container.transform);
-            rt.localPosition = new Vector2(ux, uy);
+            rt.localPosition = new Vector3(ux, uy,-100);
 
             GameObject ii = rt.Find("ItemImage").gameObject;
             int select = i;
