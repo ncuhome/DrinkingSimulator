@@ -19,7 +19,7 @@ public class ItemCollider : MonoBehaviour
     private void OnMouseDown()
     {
         DescriptionPanel.Disappear();
-        if (Shaker.Instance.startPour) { return; }
+        if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
         itemDrag = Instantiate(gameObject, transform.localPosition, transform.rotation);
@@ -42,23 +42,25 @@ public class ItemCollider : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (Shaker.Instance.startPour) { return; }
+        if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
         itemOPC.OnMouseDrag();
     }
 
     private void OnMouseEnter()
     {
         DescriptionPanel.Display(item.Name, item.Description);
+        DescriptionPanel.status = 1;
     }
 
     private void OnMouseExit()
     {
         DescriptionPanel.Disappear();
+        DescriptionPanel.status = 0;
     }
 
     private void OnMouseUp()
     {
-        if (Shaker.Instance.startPour) { return; }
+        if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
         itemOPC.OnMouseUp();
     }
     #endregion

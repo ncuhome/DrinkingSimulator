@@ -252,6 +252,8 @@ public class ItemsPlane : MonoBehaviour
         CreatItem(t4, 2);
         // CreatItem(t5, itemsys.Items.Count - 2);
     }
+
+    private int status = 0;
     #endregion
 
 
@@ -328,6 +330,27 @@ public class ItemsPlane : MonoBehaviour
     void Update()
     {
         Rotate();
+
+        GetComponent<AudioSource>().volume = Math.Abs((speedT / speedMax)*0.12f);
+
+        switch (status)
+        {
+            case 0://等待
+                if(speedT != 0)
+                {
+                    status = 1;
+                    GetComponent<AudioSource>().Play();
+                }
+                break;
+            case 1://转动
+                if(speedT == 0)
+                {
+                    status = 0;
+                    GetComponent<AudioSource>().Stop();
+                }
+                break;
+        }
+
         //Debug.Log(Enter);
         if (Enter)
         {

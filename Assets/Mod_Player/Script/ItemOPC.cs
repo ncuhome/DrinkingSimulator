@@ -14,7 +14,7 @@ public class ItemOPC : MonoBehaviour
     /// </summary>
     public Material liquidMaterial;
     private Boolean isDrag = false; //????????
-    private Boolean startPour = false; // ????????
+    public Boolean startPour = false; // ????????
     private float targetEuler_z = 0f; // ?????
     private float curEuler_z = 0f; // ????
     /// <summary>
@@ -51,11 +51,11 @@ public class ItemOPC : MonoBehaviour
     public void OnMouseUp()
     {
         if (startPour) { return; }
-        if (Shaker.Instance.inShaker) // ???????????????????
+        if ((Shaker.Instance.inShaker) && (!Shaker.Instance.productMode)) // ???????????????????
         {
             if ((!Shaker.Instance.startPour))
             {
-                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode) || (Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
+                if (Shaker.Instance.CanAddWine())
                 {
                     if (GetComponent<Item>().State == "Liquid")
                     {
@@ -69,7 +69,35 @@ public class ItemOPC : MonoBehaviour
                 else
                 {
                     //?????
-                    Debug.Log("???");
+                    MediaPlayer.Instance.MediaPlay(Media.Error);
+                    if (Item != null)
+                    {
+                        Item.GetComponent<BoxCollider2D>().enabled = true;
+                        Item.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+        else if ((Shaker.Instance.productMode) && (Shaker.Instance.productOPC.inProduct))
+        {
+            if ((!Shaker.Instance.startPour))
+            {
+                if (Shaker.Instance.seasoningIndex < 5)
+                {
+                    if (GetComponent<Item>().State == "Liquid")
+                    {
+                        StartPour();
+                    }
+                    if (GetComponent<Item>().State == "Solid")
+                    {
+                        AddSolid();
+                    }
+                }
+                else
+                {
+                    //?????
+                    MediaPlayer.Instance.MediaPlay(Media.Error);
                     if (Item != null)
                     {
                         Item.GetComponent<BoxCollider2D>().enabled = true;
@@ -98,6 +126,18 @@ public class ItemOPC : MonoBehaviour
         startPour = true;
         Shaker.Instance.wineOPC = this;
         Shaker.Instance.canAddWine = false;
+
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.pourPos = Shaker.Instance.transform.position + new Vector3(135.2f, 229.6f, 0);
+            Shaker.Instance.liquidPos = Shaker.Instance.transform.position + new Vector3(95.2f, 209.6f, 0);
+        }
+        else
+        {
+            Shaker.Instance.pourPos = Shaker.Instance.productItem.transform.position + new Vector3(155.2f, 229.6f, 0);
+            Shaker.Instance.liquidPos = Shaker.Instance.productItem.transform.position + new Vector3(115.2f, 209.6f, 0);
+        }
+
         transform.position = Shaker.Instance.pourPos;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");

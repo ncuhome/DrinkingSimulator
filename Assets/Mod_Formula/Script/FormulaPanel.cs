@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -110,7 +111,7 @@ public class FormulaPanel : MonoBehaviour
             ux = 0;
             uy =  + ddx - 200*i;
             rt.SetParent(Container.transform);
-            rt.localPosition = new Vector2(ux, uy);
+            rt.localPosition = new Vector3(ux, uy,-100);
 
             Image image = obj.transform.Find("OverItem").GetComponent<Image>();
             string spriteName = " ";
@@ -176,6 +177,10 @@ public class FormulaPanel : MonoBehaviour
         return "不可名状物";
     }
 
+    private void MeidiaPlay()
+    {
+        GetComponent<AudioSource>().Play();
+    }
     #endregion
 
 
@@ -183,9 +188,13 @@ public class FormulaPanel : MonoBehaviour
 
     public void OpenClose()
     {
+        MeidiaPlay();
         PanelAnimator.SetTrigger("pressed");
-        if (openned) { openned = false; }
-        else { openned = true; UpdateItems(); }
+        if (openned)
+        {
+            openned = false;
+        }
+        else { openned = true;  }
     }
     #endregion
 
@@ -211,7 +220,7 @@ public class FormulaPanel : MonoBehaviour
 
     void Start()
     {
-
+        UpdateItems();
     }
 
 

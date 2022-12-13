@@ -5,14 +5,17 @@ using UnityEngine;
 //取代了音频序号的枚举类
 public enum Media
 {
-    Drink_Long = 1,
-    Drink_Short = 2,
-    Shake = 3,
-    Poor_Fast = 4,
-    Poor_Slow = 5,
-    Drop = 6,
-    Cheers = 7,
-    Steps = 8
+    Drink_Long,
+    Drink_Short,
+    Shake,
+    Poor_Fast,
+    Poor_Slow,
+    Drop,
+    Cheers,
+    Steps,
+    Error,
+    FormulaP,
+    PlaneR
 }
 
 public class MediaPlayer : MonoBehaviour
@@ -20,7 +23,7 @@ public class MediaPlayer : MonoBehaviour
     public static MediaPlayer Instance;
 
     //音频，以及将音频与枚举值相关联的字典
-    public AudioClip drink_Long, drink_Short, shake,poor_Fast,poor_Slow,drop,cheers,steps;
+    public AudioClip drink_Long, drink_Short, shake, poor_Fast, poor_Slow, drop, cheers, steps, error,FormulaP, PlaneR;
 
     public Dictionary<Media, AudioClip> myMedias = new Dictionary<Media, AudioClip>();
 
@@ -40,7 +43,7 @@ public class MediaPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void MediaLoader()
@@ -53,6 +56,9 @@ public class MediaPlayer : MonoBehaviour
         myMedias.Add(Media.Drop, drop);
         myMedias.Add(Media.Cheers, cheers);
         myMedias.Add(Media.Steps, steps);
+        myMedias.Add(Media.Error, error);
+        myMedias.Add(Media.FormulaP, FormulaP);
+        myMedias.Add(Media.PlaneR, PlaneR);
     }
 
     public void MediaPlay(Media mediaName)
