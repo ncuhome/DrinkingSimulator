@@ -142,7 +142,7 @@ public class ItemSystem : MonoBehaviour
     #region Unity
     private void Awake()
     {
-        string path = Application.dataPath + @"/Resources/DataSheet/" + dataPath+".json";
+        string path = Application.streamingAssetsPath + @"/DataSheet/" + dataPath+".json";
         string txt = File.ReadAllText(path);
         //Debug.Log(txt);
         Items = JsonConvert.DeserializeObject<List<ItemTemplate>>(txt);
