@@ -191,7 +191,7 @@ public class Customer : MonoBehaviour
     public int StartEvaluate(GameObject al, int n)
     {
         int mye = 0;
-        int r = 20;
+        int r = 30;
 
         int sweet = al.GetComponent<Item>().Sweet;
         int acid = al.GetComponent<Item>().Acid;
