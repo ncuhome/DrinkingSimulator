@@ -3280,12 +3280,13 @@ GameObject:
   - component: {fileID: 1679216790}
   - component: {fileID: 1679216789}
   - component: {fileID: 1679216791}
+  - component: {fileID: 1679216792}
   m_Layer: 5
   m_Name: CustomerSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1679216787
 RectTransform:
@@ -3359,6 +3360,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wink: {fileID: 2100000, guid: 53abf308956b199499e8c1aa402a49fd, type: 2}
   customerlist: []
+--- !u!225 &1679216792
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679216786}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1707182371
 PrefabInstance:
   m_ObjectHideFlags: 0
