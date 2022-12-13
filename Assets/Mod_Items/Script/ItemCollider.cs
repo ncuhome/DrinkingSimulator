@@ -37,12 +37,14 @@ public class ItemCollider : MonoBehaviour
         {
             itemOPC.liquidMaterial = Resources.Load<Material>("Material/LightBlue");
         }
+        if (itemOPC == null) { return; }
         itemOPC.OnMouseDown();
     }
 
     private void OnMouseDrag()
     {
         if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
+        if (itemOPC == null) { return; }
         itemOPC.OnMouseDrag();
     }
 
@@ -61,6 +63,7 @@ public class ItemCollider : MonoBehaviour
     private void OnMouseUp()
     {
         if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
+        if (itemOPC == null) { return; }
         itemOPC.OnMouseUp();
     }
     #endregion
