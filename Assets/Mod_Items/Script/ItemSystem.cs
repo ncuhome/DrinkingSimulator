@@ -94,7 +94,7 @@ public class ItemSystem : MonoBehaviour
     {
         PanelAnimator.SetTrigger("pressed");
         if (openned) { openned = false; }
-        else { openned = true; UpdateItems(); }
+        else { openned = true;  }
     }
     #endregion
 
@@ -142,15 +142,21 @@ public class ItemSystem : MonoBehaviour
     #region Unity
     private void Awake()
     {
-        string path = Application.streamingAssetsPath + @"/DataSheet/" + dataPath+".json";
+
+        string path = Application.streamingAssetsPath + @"/DataSheet/" + dataPath + ".json";
         string txt = File.ReadAllText(path);
         //Debug.Log(txt);
         Items = JsonConvert.DeserializeObject<List<ItemTemplate>>(txt);
 
-        if(selectedPanel)
+        if (selectedPanel)
         {
             plane.FirstDisplay();
         }
+    }
+
+    public void Start()
+    {
+        UpdateItems();
     }
     #endregion
 }

@@ -49,11 +49,13 @@ public class ItemCollider : MonoBehaviour
     private void OnMouseEnter()
     {
         DescriptionPanel.Display(item.Name, item.Description);
+        DescriptionPanel.status = 1;
     }
 
     private void OnMouseExit()
     {
         DescriptionPanel.Disappear();
+        DescriptionPanel.status = 0;
     }
 
     private void OnMouseUp()

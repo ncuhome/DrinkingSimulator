@@ -185,7 +185,7 @@ public class FormulaPanel : MonoBehaviour
     {
         PanelAnimator.SetTrigger("pressed");
         if (openned) { openned = false; }
-        else { openned = true; UpdateItems(); }
+        else { openned = true;  }
     }
     #endregion
 
@@ -211,7 +211,7 @@ public class FormulaPanel : MonoBehaviour
 
     void Start()
     {
-
+        UpdateItems();
     }
 
 
