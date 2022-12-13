@@ -55,6 +55,7 @@ public class ProductOPC : MonoBehaviour
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<BoxCollider2D>().enabled = true;
+            Shaker.Instance.shakerCollider.GetComponent<PolygonCollider2D>().enabled = true;
             Destroy(this.gameObject);
         }
         if (inTrashBin)
@@ -64,6 +65,7 @@ public class ProductOPC : MonoBehaviour
             Shaker.Instance.GetComponent<BoxCollider2D>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<SpriteRenderer>().enabled = true;
             Shaker.Instance.cupLid.GetComponent<BoxCollider2D>().enabled = true;
+            Shaker.Instance.shakerCollider.GetComponent<PolygonCollider2D>().enabled = true;
             Destroy(this.gameObject);
         }
     }
@@ -90,6 +92,10 @@ public class ProductOPC : MonoBehaviour
             inCustomer = true;
             customer = other.GetComponent<Customer>();
         }
+        if (other.transform.tag == "Item")
+        {
+            inProduct = true;
+        }
         if (other.tag == "TrashBin")
         {
             inTrashBin = true;
@@ -100,18 +106,15 @@ public class ProductOPC : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "TrashBin")
-        {
-            inTrashBin = true;
-        }
-    }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Customer")
         {
             inCustomer = false;
+        }
+        if (other.transform.tag == "Item")
+        {
+            inProduct = false;
         }
         if (other.tag == "TrashBin")
         {

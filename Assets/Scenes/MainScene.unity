@@ -1099,6 +1099,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &576782807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2613435875780260590, guid: a58f8881011e7154fb49b0abc4cfe224, type: 3}
+  m_PrefabInstance: {fileID: 1768227253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &669122799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6343427721165599523, guid: b3963244139301f45a7032964d4ec63d, type: 3}
@@ -3609,6 +3614,10 @@ PrefabInstance:
       propertyPath: meshRenderer
       value: 
       objectReference: {fileID: 130708566}
+    - target: {fileID: 2613435876433100553, guid: a58f8881011e7154fb49b0abc4cfe224, type: 3}
+      propertyPath: shakerCollider
+      value: 
+      objectReference: {fileID: 576782807}
     - target: {fileID: 2613435876433100555, guid: a58f8881011e7154fb49b0abc4cfe224, type: 3}
       propertyPath: m_Size.x
       value: 0.81165004

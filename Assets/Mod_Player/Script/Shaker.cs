@@ -31,8 +31,9 @@ public class Shaker : MonoBehaviour
     public ProductOPC productOPC;
     public int seasoningIndex = 0;
     public bool productMode = false;
-    private Item productItem;
+    public Item productItem;
     public bool canAddWine = true;
+    public GameObject shakerCollider;
 
     private void Awake()
     {
@@ -184,6 +185,7 @@ public class Shaker : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         cupLid.GetComponent<SpriteRenderer>().enabled = false;
         cupLid.GetComponent<BoxCollider2D>().enabled = false;
+        shakerCollider.GetComponent<PolygonCollider2D>().enabled = false;
         productMode = true;
 
         GameObject product = Instantiate(productPre, transform.position, transform.rotation);
@@ -199,7 +201,7 @@ public class Shaker : MonoBehaviour
                 {
                     if (productItem.FileName == "Fake wine")
                     {
-                        string random = UnityEngine.Random.Range(1,4).ToString();
+                        string random = UnityEngine.Random.Range(1, 4).ToString();
                         product.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Mod_Items/FakeWine/" + random);
                     }
                     else
@@ -245,6 +247,7 @@ public class Shaker : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (productMode) { return; }
         if (startPour) { return; }
         if (isShaking) { return; }
         if (wineIndex >= 2)
