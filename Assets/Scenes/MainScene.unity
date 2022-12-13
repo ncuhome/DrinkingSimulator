@@ -400,13 +400,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7597345307255892440, guid: 4eed5e9da5a99bb4ab77082a7aaf49cf, type: 3}
+      propertyPath: error
+      value: 
+      objectReference: {fileID: 8300000, guid: 38c2da7fcb229394392204af2fa629c3, type: 3}
+    - target: {fileID: 7597345307255892440, guid: 4eed5e9da5a99bb4ab77082a7aaf49cf, type: 3}
       propertyPath: shake
       value: 
       objectReference: {fileID: 8300000, guid: 1f5527f85b92e814c8e6b9e8a8879c8e, type: 3}
     - target: {fileID: 7597345307255892440, guid: 4eed5e9da5a99bb4ab77082a7aaf49cf, type: 3}
       propertyPath: poor_Fast
       value: 
-      objectReference: {fileID: 8300000, guid: 758420c092668524f8fa8c9f73ee5279, type: 3}
+      objectReference: {fileID: 8300000, guid: 65e59ab7cbf4cc74aa2641c56cd7a873, type: 3}
     - target: {fileID: 7926916476496252773, guid: 4eed5e9da5a99bb4ab77082a7aaf49cf, type: 3}
       propertyPath: m_Volume
       value: 0.25

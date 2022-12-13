@@ -255,6 +255,7 @@ public class Shaker : MonoBehaviour
         else
         {
             //提示不能调酒
+            MediaPlayer.Instance.MediaPlay(Media.Error);
             Debug.Log("原料不够");
         }
     }
