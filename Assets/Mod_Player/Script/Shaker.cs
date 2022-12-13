@@ -248,7 +248,7 @@ public class Shaker : MonoBehaviour
     public void OnMouseDown()
     {
         if (productMode) { return; }
-        if (startPour) { return; }
+        if (wineOPC != null && wineOPC.startPour) { return; }
         if (isShaking) { return; }
         if (wineIndex >= 2)
         {

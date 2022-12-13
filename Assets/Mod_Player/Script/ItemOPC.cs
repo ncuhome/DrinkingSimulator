@@ -14,7 +14,7 @@ public class ItemOPC : MonoBehaviour
     /// </summary>
     public Material liquidMaterial;
     private Boolean isDrag = false; //????????
-    private Boolean startPour = false; // ????????
+    public Boolean startPour = false; // ????????
     private float targetEuler_z = 0f; // ?????
     private float curEuler_z = 0f; // ????
     /// <summary>

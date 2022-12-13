@@ -27,7 +27,7 @@ public class ProductOPC : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if (Shaker.Instance.startPour) { return; }
+        if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 
@@ -43,7 +43,7 @@ public class ProductOPC : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (Shaker.Instance.startPour) { return; }
+        if (Shaker.Instance.wineOPC != null && Shaker.Instance.wineOPC.startPour) { return; }
         if (inCustomer) // 递给顾客
         {
             //Debug.Log("递给顾客");
