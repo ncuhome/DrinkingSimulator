@@ -5,14 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shaker
+  - Item
+  - Liquid
+  - Product
+  - Customer
+  - TrashBin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - LiquidEffect
   - Water
   - UI
-  - Liqued Effect
+  - 
   - 
   - 
   - 

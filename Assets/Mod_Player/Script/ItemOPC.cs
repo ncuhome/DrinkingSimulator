@@ -5,35 +5,37 @@ using UnityEngine;
 
 public class ItemOPC : MonoBehaviour
 {
-    private Vector3 screenPos; //屏幕坐标
-    private Vector3 offset; //鼠标和物体中心坐标差
+    public GameObject Item;
+    private Vector3 screenPos; //????
+    private Vector3 offset; //??????????
 
     /// <summary>
-    /// 物体固定位置（如果松开鼠标会传回去的位置
+    /// ????????????????????
     /// </summary>
-    public Vector3 staticPos;
     public Material liquidMaterial;
-    private Boolean isDrag = false; //是否处于抓取状态
-    private Boolean startPour = false; // 是否开始倒酒状态
-    private float targetEuler_z = 0f; // 旋转目标角
-    private float curEuler_z = 0f; // 当前角度
+    private Boolean isDrag = false; //????????
+    private Boolean startPour = false; // ????????
+    private float targetEuler_z = 0f; // ?????
+    private float curEuler_z = 0f; // ????
     /// <summary>
-    /// 物体旋转速度 度/s
+    /// ?????? ?/s
     /// </summary>
     public float spinSpeed = 360f;
+    public Item item;
 
-    #region 鼠标操作事件
-    private void OnMouseDown()
+    #region ??????
+    public void OnMouseDown()
     {
         screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        item.transform.localScale = new Vector2(21.74f, 23.04f);
         offset = screenPos - Input.mousePosition;
         isDrag = true;
     }
 
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
-        if (startPour) return;
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // 跟随鼠标移动
+        if (!Shaker.Instance.canAddWine) return;
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + offset); // ??????
     }
 
     private void OnMouseEnter()
@@ -46,31 +48,57 @@ public class ItemOPC : MonoBehaviour
 
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
-        if (Shaker.Instance.inShaker) // 如果移动到调酒杯上就倒酒，否则移回原位
+        if (startPour) { return; }
+        if (Shaker.Instance.inShaker) // ???????????????????
         {
-            if ((!startPour))
+            if ((!Shaker.Instance.startPour))
             {
-                StartPour();
+                if ((Shaker.Instance.CanAddWine() && !Shaker.Instance.productMode) || (Shaker.Instance.seasoningIndex < 5 && Shaker.Instance.productMode))
+                {
+                    if (GetComponent<Item>().State == "Liquid")
+                    {
+                        StartPour();
+                    }
+                    if (GetComponent<Item>().State == "Solid")
+                    {
+                        AddSolid();
+                    }
+                }
+                else
+                {
+                    //?????
+                    Debug.Log("???");
+                    if (Item != null)
+                    {
+                        Item.GetComponent<BoxCollider2D>().enabled = true;
+                        Item.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    Destroy(this.gameObject);
+                }
             }
         }
         else
         {
-            transform.position = staticPos;
+            if (Item != null)
+            {
+                Item.GetComponent<BoxCollider2D>().enabled = true;
+                Item.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            Destroy(this.gameObject);
         }
-        isDrag = false;
     }
     #endregion
     /// <summary>
-    /// 开始倒酒
+    /// ????
     /// </summary>
     private void StartPour()
     {
         startPour = true;
         Shaker.Instance.wineOPC = this;
+        Shaker.Instance.canAddWine = false;
         transform.position = Shaker.Instance.pourPos;
-        Shaker.Instance.meshRenderer.material = liquidMaterial;
         targetEuler_z = 120f;
         StartCoroutine("StartShakerPour");
     }
@@ -81,9 +109,24 @@ public class ItemOPC : MonoBehaviour
         Shaker.Instance.InstantiateLiquid();
         yield return new WaitForSeconds(0.4f);
         Shaker.Instance.StartPour();
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
+        StartCoroutine(StartPlayAudio());
+    }
+
+    private IEnumerator StartPlayAudio()
+    {
+        yield return new WaitForSeconds(1f);
+        MediaPlayer.Instance.MediaPlay(Media.Poor_Fast);
     }
     /// <summary>
-    /// 将酒瓶回转
+    /// ?????
     /// </summary>
     public void EndPourSpin()
     {
@@ -94,8 +137,37 @@ public class ItemOPC : MonoBehaviour
     public IEnumerator EndPour()
     {
         yield return new WaitForSeconds(0.4f);
-        transform.position = staticPos;
-        startPour = false;
+        if (Item != null)
+        {
+            Item.GetComponent<BoxCollider2D>().enabled = true;
+            Item.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        Shaker.Instance.inShaker = false;
+        Shaker.Instance.canAddWine = true;
+        Destroy(this.gameObject);
+    }
+
+    private void AddSolid()
+    {
+        Shaker.Instance.StartPour();
+        if (!Shaker.Instance.productMode)
+        {
+            Shaker.Instance.AddWine(this.GetComponent<Item>().Name);
+        }
+        else
+        {
+            Shaker.Instance.AddSeasoning(this.GetComponent<Item>());
+        }
+        MediaPlayer.Instance.MediaPlay(Media.Drop);
+        if (Item != null)
+        {
+            Item.GetComponent<BoxCollider2D>().enabled = true;
+            Item.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        Shaker.Instance.pourTime = 0f;
+        Shaker.Instance.startPour = false;
+        Shaker.Instance.inShaker = false;
+        Destroy(this.gameObject);
     }
 
     #region Unity
@@ -106,13 +178,7 @@ public class ItemOPC : MonoBehaviour
 
     void Update()
     {
-        // 设置固定位置
-        if ((!isDrag) && (!startPour))
-        {
-            staticPos = transform.position;
-        }
 
-        // 旋转物体
         transform.eulerAngles = new Vector3(0f, 0f, curEuler_z);
         if (targetEuler_z != 0)
         {

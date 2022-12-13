@@ -1,33 +1,114 @@
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
+public enum Tag { Normal }
 public class Item : MonoBehaviour
 {
     /// <summary>
-    /// 物品名称
+    /// ????
     /// </summary>
     public string Name;
     /// <summary>
-    /// 物品ID
-    /// </summary>
-    public int ID;
-    /// <summary>
-    /// 物品描述
+    /// ????
     /// </summary>
     public string Description;
     /// <summary>
-    /// 贴图名称
+    /// ????
     /// </summary>
     public string FileName;
     /// <summary>
-    /// 生命影响值
+    /// ????
     /// </summary>
-    public float HealthEffect;
+    public float t;
     /// <summary>
-    /// 压力影响值
+    /// ??
     /// </summary>
-    public float PressureEffect;
+    public int Sweet;
     /// <summary>
-    /// 醉酒影响值
+    /// ??
     /// </summary>
-    public float DrunkEffect;
+    public int Acid;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public int Alcohol;
+    /// <summary>
+    /// ??
+    /// </summary>
+    public int Temperature;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public int Abnormal;
+    /// <summary>
+    /// ???????
+    /// </summary>
+    public bool control;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string LiquidMaterial;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string State;
+    public void SetData(ItemTemplate template)
+    {
+        Name = template.Name;
+        Description = template.Description;
+        FileName = template.FileName;
+        Sweet = template.Sweet;
+        Acid = template.Acid;
+        Alcohol = template.Alcohol;
+        Temperature = template.Temperature;
+        Abnormal = template.Abnormal;
+        LiquidMaterial = template.LiquidMaterial;
+        State = template.State;
+    }
+}
+
+public class ItemTemplate
+{
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string Name;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string Description;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string FileName;
+
+    /// <summary>
+    /// ??
+    /// </summary>
+    public int Sweet;
+    /// <summary>
+    /// ??
+    /// </summary>
+    public int Acid;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public int Alcohol;
+    /// <summary>
+    /// ??
+    /// </summary>
+    public int Temperature;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public int Abnormal;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string LiquidMaterial;
+    /// <summary>
+    /// ????
+    /// </summary>
+    public string State;
 }
