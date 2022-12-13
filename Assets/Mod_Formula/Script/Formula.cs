@@ -34,42 +34,30 @@ class Formula
     /// <returns></returns>
     public bool isMake(string[] materials)
     {
-        foreach (string m in Materials)
+        string[] mt = new string[materials.Length];
+        for(int i=0;i< materials.Length; i++)
         {
-            bool mk = false;
+            mt[i] = materials[i];
+        }
+        for(int i = 0;i<Materials.Length;i++)
+        {
+            string m = Materials[i];
             if (m == "Null") { continue; }
-            for(int i=0;i<materials.Length;i++)
+            bool ext = false;
+            for(int k=0;k< mt.Length;k++)
             {
-                if (materials[i] == m)
+                if (mt[k] == "Null") { continue; }
+                if (mt[k] == m)
                 {
-                    mk = true;
+                    mt[k] = "Null";
+                    ext = true;
                     break;
                 }
             }
-            if (!mk) { return false; }
+            if (!ext) { return false; }
         }
         return true;
     }
-    /// <summary>
-    /// 获取非自身所需材料的材料
-    /// </summary>
-    /// <returns></returns>
-    public string[] getMaterials(string[] materials)
-    {
-        List<string> list = new List<string>();
-        foreach (string m in materials)
-        {
-            if (m == "Null") { continue; }
-            list.Add(m);
-        }
-
-        foreach (string m in Materials)
-        {
-            list.Remove(m);
-        }
-        return list.ToArray();
-    }
-
 }
 
 class FormulaT

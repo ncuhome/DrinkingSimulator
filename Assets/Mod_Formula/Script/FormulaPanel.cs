@@ -169,8 +169,6 @@ public class FormulaPanel : MonoBehaviour
         {
             if (formula.isMake(materials))
             {
-                string[] backM = formula.getMaterials(materials);
-                if (backM.Length > 0) { return "不可名状物"; }
                 return formula.Name;
             }
         }
